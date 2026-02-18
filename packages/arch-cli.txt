@@ -1,0 +1,7 @@
+# CLI/system tools for Arch Linux
+yay
+alacritty
+cava
+fastfetch
+pipes.sh
+cmatrix

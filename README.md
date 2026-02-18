@@ -1,18 +1,32 @@
 # Dotfiles
 
-Este repo gestiona configuraciones personales usando estructura compatible con GNU Stow.
+Configuraciones personales para Arch Linux.
 
-## Estructura
-- `alacritty/.config/alacritty`
-- `cava/.config/cava`
+## Incluye
+- `alacritty/.config/alacritty/alacritty.toml`
+- `cava/.config/cava/config`
+- `fastfetch/.config/fastfetch/config.jsonc`
+- `yay/.config/yay/` (normalmente vacio, pero versionado)
+- `packages/arch-cli.txt` (paquetes CLI recomendados)
 
-## Uso
+## Uso rapido
 ```bash
 cd ~/dotfiles
-stow alacritty cava
+./install.sh --packages --link
 ```
 
-## Instalacion de stow (Arch)
+## Comandos utiles
 ```bash
-sudo pacman -S stow
+# Solo crear/enlazar symlinks
+./install.sh --link
+
+# Solo instalar paquetes listados en packages/arch-cli.txt
+./install.sh --packages
+
+# Ver estado de enlaces
+./scripts/status.sh
 ```
+
+## Estructura
+Cada carpeta raiz (`alacritty`, `cava`, `fastfetch`) es un paquete de dotfiles.
+Dentro de cada paquete se replica la ruta real en HOME (`.config/...`).
