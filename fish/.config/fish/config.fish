@@ -20,14 +20,6 @@ if status is-interactive
         starship init fish | source
     end
 
-    # Show fetch once per login shell: prefer nitch, fallback to fastfetch
-    if status --is-login
-        if command -v nitch >/dev/null 2>&1
-            nitch
-        else if command -v fastfetch >/dev/null 2>&1
-            fastfetch
-        end
-    end
 end
 
 # Disable fish welcome message
