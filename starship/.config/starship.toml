@@ -1,4 +1,4 @@
-palette = "glass"
+palette = "glass_shadcn"
 add_newline = true
 
 format = """
@@ -6,15 +6,15 @@ $username$hostname$directory$git_branch$git_status$cmd_duration
 $character
 """
 
-[palettes.glass]
-red = "#ff453a"
-green = "#32d74b"
-yellow = "#ffd60a"
-blue = "#0a84ff"
-magenta = "#bf5af2"
-cyan = "#64d2ff"
-white = "#f5f5f7"
-gray = "#3a3a3c"
+[palettes.glass_shadcn]
+red = "#fb7185"
+green = "#34d399"
+yellow = "#facc15"
+blue = "#60a5fa"
+magenta = "#c084fc"
+cyan = "#22d3ee"
+white = "#fafafa"
+gray = "#a1a1aa"
 
 [username]
 show_always = true
@@ -28,7 +28,7 @@ style = "fg:gray"
 format = "[@$hostname ]($style)"
 
 [directory]
-style = "bold fg:cyan"
+style = "bold fg:blue"
 truncation_length = 3
 truncate_to_repo = false
 read_only = " ro"

@@ -6,8 +6,8 @@
 
 # ── Window Settings ─────────────────────────────────────────────────────
 [window]
-opacity = 0.33
-blur = true
+opacity = 0.94
+blur = false
 padding = { x = 16, y = 16 }
 decorations = "None"
 dynamic_padding = true

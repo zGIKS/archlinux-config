@@ -1,19 +1,19 @@
 if status is-interactive
-    # Fish colors aligned with Alacritty glass palette
-    set -g fish_color_normal f5f5f7
-    set -g fish_color_command 0a84ff
-    set -g fish_color_param f5f5f7
-    set -g fish_color_keyword bf5af2
-    set -g fish_color_quote 32d74b
-    set -g fish_color_redirection 64d2ff
-    set -g fish_color_end ffd60a
-    set -g fish_color_error ff453a
-    set -g fish_color_comment 3a3a3c
-    set -g fish_color_operator 64d2ff
-    set -g fish_color_escape ffd60a
-    set -g fish_color_autosuggestion 3a3a3c
-    set -g fish_color_search_match --background=1c1c1e
-    set -g fish_color_selection --background=0a84ff
+    # Fish colors aligned with glass + shadcn palette
+    set -g fish_color_normal fafafa
+    set -g fish_color_command 60a5fa
+    set -g fish_color_param fafafa
+    set -g fish_color_keyword c084fc
+    set -g fish_color_quote 34d399
+    set -g fish_color_redirection 22d3ee
+    set -g fish_color_end facc15
+    set -g fish_color_error fb7185
+    set -g fish_color_comment a1a1aa
+    set -g fish_color_operator 22d3ee
+    set -g fish_color_escape facc15
+    set -g fish_color_autosuggestion a1a1aa
+    set -g fish_color_search_match --background=18181b
+    set -g fish_color_selection --background=60a5fa
 
     # Starship prompt for fish
     if command -v starship >/dev/null 2>&1
