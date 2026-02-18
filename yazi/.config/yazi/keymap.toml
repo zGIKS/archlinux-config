@@ -1,0 +1,12 @@
+[mgr]
+prepend_keymap = [
+  { on = [ "g", "h" ], run = "cd ~",            desc = "Ir a HOME" },
+  { on = [ "g", "d" ], run = "cd ~/Downloads",  desc = "Ir a Downloads" },
+  { on = [ "g", "c" ], run = "cd ~/.config",    desc = "Ir a ~/.config" },
+  { on = [ "g", "f" ], run = "cd ~/dotfiles",   desc = "Ir a dotfiles" },
+]
+
+[help]
+prepend_keymap = [
+  { on = "q", run = "close", desc = "Cerrar ayuda" },
+]

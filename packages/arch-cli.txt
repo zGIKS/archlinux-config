@@ -4,6 +4,8 @@ nitch-git
 alacritty
 cava
 fastfetch
+yazi
+fresh-editor
 pipes.sh
 cmatrix
 starship

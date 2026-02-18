@@ -1,0 +1,28 @@
+{
+  "version": 0,
+  "theme": "high-contrast",
+  "check_for_updates": false,
+  "editor": {
+    "line_numbers": true,
+    "relative_line_numbers": true,
+    "line_wrap": true,
+    "tab_size": 2,
+    "scroll_offset": 5,
+    "auto_indent": true,
+    "show_menu_bar": true,
+    "show_tab_bar": true,
+    "use_terminal_bg": true,
+    "trim_trailing_whitespace_on_save": true,
+    "ensure_final_newline_on_save": true
+  },
+  "file_explorer": {
+    "respect_gitignore": true,
+    "show_hidden": false,
+    "show_gitignored": false,
+    "width": 0.3
+  },
+  "clipboard": {
+    "use_osc52": true,
+    "use_system_clipboard": true
+  }
+}

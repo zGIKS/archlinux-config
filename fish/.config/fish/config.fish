@@ -1,3 +1,6 @@
+set -gx EDITOR fresh
+set -gx VISUAL fresh
+
 if status is-interactive
     # Fish colors aligned with glass + shadcn palette
     set -g fish_color_normal fafafa

@@ -47,6 +47,13 @@ for module in "${filtered[@]}"; do
     dst="$HOME_DIR/$rel"
     dst_dir="$(dirname "$dst")"
     mkdir -p "$dst_dir"
+    if [[ -e "$dst" ]]; then
+      resolved="$(readlink -f "$dst" || true)"
+      if [[ "$resolved" == "$src" ]]; then
+        echo "skip: $dst ya apunta a $src"
+        continue
+      fi
+    fi
     ln -sfn "$src" "$dst"
     echo "link: $dst -> $src"
   done < <(find "$ROOT_DIR/$module" \( -type f -o -type l \) -print0)
