@@ -16,6 +16,10 @@ dynamic_padding = true
 [colors]
 transparent_background_colors = true
 
+[terminal.shell]
+program = "/usr/bin/fish"
+args = ["-l"]
+
 # ── Font Settings ───────────────────────────────────────────────────────
 [font]
 size = 12.0

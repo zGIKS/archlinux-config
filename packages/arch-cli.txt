@@ -5,3 +5,5 @@ cava
 fastfetch
 pipes.sh
 cmatrix
+starship
+bash-completion
