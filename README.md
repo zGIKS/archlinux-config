@@ -7,8 +7,8 @@ Configuraciones personales para Arch Linux.
 - `bash/.bashrc` (con init de Starship)
 - `cava/.config/cava/config`
 - `fastfetch/.config/fastfetch/config.jsonc`
+- `fish/.config/fish/config.fish`
 - `starship/.config/starship.toml`
-- `yay/.config/yay/` (normalmente vacio, pero versionado)
 - `packages/arch-cli.txt` (paquetes CLI recomendados)
 
 ## Uso rapido
@@ -30,5 +30,11 @@ cd ~/dotfiles
 ```
 
 ## Estructura
-Cada carpeta raiz (`alacritty`, `bash`, `cava`, `fastfetch`, `starship`, `yay`) es un paquete de dotfiles.
+Cada carpeta raiz (`alacritty`, `bash`, `cava`, `fastfetch`, `fish`, `starship`, `yay`) es un paquete de dotfiles.
 Dentro de cada paquete se replica la ruta real en HOME (`.config/...`).
+
+## Nitch (alternativa a fastfetch)
+- Instalacion: `./install.sh --packages` (usa `packages/arch-cli.txt`).
+- En `fish`, al abrir una shell login:
+  - usa `nitch` si esta instalado
+  - si no, usa `fastfetch` como fallback

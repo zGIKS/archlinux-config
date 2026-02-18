@@ -9,7 +9,7 @@ show_help() {
 Usage: ./install.sh [--packages] [--link] [--status] [--help]
 
 Options:
-  --packages  Instala paquetes CLI de packages/arch-cli.txt (Arch Linux).
+  --packages  Instala paquetes CLI de packages/arch-cli.txt.
   --link      Crea/enlaza dotfiles en $HOME.
   --status    Muestra estado de enlaces.
   --help      Muestra esta ayuda.
@@ -51,11 +51,19 @@ install_packages() {
 
   if [[ ${#available[@]} -eq 0 ]]; then
     echo "No hay paquetes disponibles para instalar desde pacman."
-    return 0
+  else
+    echo "Instalando con pacman: ${available[*]}"
+    sudo pacman -S --needed "${available[@]}"
   fi
 
-  echo "Instalando paquetes: ${available[*]}"
-  sudo pacman -S --needed "${available[@]}"
+  if [[ ${#missing[@]} -gt 0 ]]; then
+    if command -v yay >/dev/null 2>&1; then
+      echo "Instalando con yay (no encontrados en pacman): ${missing[*]}"
+      yay -S --needed "${missing[@]}"
+    else
+      echo "Faltan paquetes de AUR y yay no esta instalado: ${missing[*]}"
+    fi
+  fi
 }
 
 do_link() {

@@ -1,5 +1,6 @@
 # CLI/system tools for Arch Linux
 yay
+nitch-git
 alacritty
 cava
 fastfetch
