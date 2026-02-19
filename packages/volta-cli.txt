@@ -1,0 +1,11 @@
+# Global Node tooling managed by Volta.
+# Unpinned = installs latest available at install time.
+node@lts
+pnpm
+yarn
+@anthropic-ai/claude-code
+@google/gemini-cli
+svelte-language-server
+tailwindcss
+typescript
+typescript-language-server

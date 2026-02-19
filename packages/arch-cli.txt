@@ -1,5 +1,6 @@
 # CLI/system tools for Arch Linux
 yay
+volta-bin
 nitch-git
 alacritty
 cava

@@ -14,6 +14,8 @@ Configuraciones personales para Arch Linux.
 - `yazi/.config/yazi/keymap.toml`
 - `yazi/.config/yazi/theme.toml`
 - `packages/arch-cli.txt` (paquetes CLI recomendados)
+- `packages/volta-cli.txt` (CLIs globales de Node gestionados con Volta)
+  - si no hay version fijada, instala la version mas reciente disponible
 
 ## Uso rapido
 ```bash
@@ -27,10 +29,17 @@ cd ~/dotfiles
 ./install.sh --link
 
 # Solo instalar paquetes listados en packages/arch-cli.txt
+# y CLIs de Node listados en packages/volta-cli.txt (si volta esta instalado)
 ./install.sh --packages
+
+# Verificar orden de PATH y resolucion de comandos (node/npm/gemini)
+./install.sh --check
 
 # Ver estado de enlaces
 ./scripts/status.sh
+
+# Recargar shell actual tras cambios de dotfiles
+./scripts/reload-shell.sh
 ```
 
 ## Yazi

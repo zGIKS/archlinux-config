@@ -3,15 +3,17 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PACKAGES_FILE="$ROOT_DIR/packages/arch-cli.txt"
+VOLTA_PACKAGES_FILE="$ROOT_DIR/packages/volta-cli.txt"
 
 show_help() {
   cat <<'EOF'
-Usage: ./install.sh [--packages] [--link] [--status] [--help]
+Usage: ./install.sh [--packages] [--link] [--status] [--check] [--help]
 
 Options:
   --packages  Instala paquetes CLI de packages/arch-cli.txt.
   --link      Crea/enlaza dotfiles en $HOME.
   --status    Muestra estado de enlaces.
+  --check     Verifica orden/estado de PATH para herramientas clave.
   --help      Muestra esta ayuda.
 
 Si no se pasa ninguna opcion, ejecuta: --link
@@ -66,6 +68,27 @@ install_packages() {
   fi
 }
 
+install_volta_packages() {
+  if ! command -v volta >/dev/null 2>&1; then
+    echo "volta no disponible; se omite instalacion de CLIs Node."
+    return 0
+  fi
+
+  if [[ ! -f "$VOLTA_PACKAGES_FILE" ]]; then
+    echo "No existe $VOLTA_PACKAGES_FILE; se omite instalacion de CLIs Node."
+    return 0
+  fi
+
+  mapfile -t vpkg < <(grep -Ev '^\s*(#|$)' "$VOLTA_PACKAGES_FILE")
+  if [[ ${#vpkg[@]} -eq 0 ]]; then
+    echo "No hay paquetes en $VOLTA_PACKAGES_FILE."
+    return 0
+  fi
+
+  echo "Instalando con volta: ${vpkg[*]}"
+  volta install "${vpkg[@]}"
+}
+
 do_link() {
   "$ROOT_DIR/scripts/link.sh"
 }
@@ -74,9 +97,14 @@ do_status() {
   "$ROOT_DIR/scripts/status.sh"
 }
 
+do_check() {
+  "$ROOT_DIR/scripts/check-path.sh"
+}
+
 run_packages=false
 run_link=false
 run_status=false
+run_check=false
 
 if [[ $# -eq 0 ]]; then
   run_link=true
@@ -96,6 +124,10 @@ while [[ $# -gt 0 ]]; do
       run_status=true
       shift
       ;;
+    --check)
+      run_check=true
+      shift
+      ;;
     --help|-h)
       show_help
       exit 0
@@ -109,7 +141,11 @@ while [[ $# -gt 0 ]]; do
 done
 
 $run_packages && install_packages
+$run_packages && install_volta_packages
 $run_link && do_link
 $run_status && do_status
+if $run_check || $run_link || $run_packages; then
+  do_check
+fi
 
 echo "Listo."

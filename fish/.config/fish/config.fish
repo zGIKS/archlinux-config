@@ -1,5 +1,28 @@
 set -gx EDITOR fresh
 set -gx VISUAL fresh
+set -gx VOLTA_HOME $HOME/.volta
+set -gx BUN_INSTALL $HOME/.bun
+
+# Build a deterministic PATH with stable priority and no duplicates.
+set -l preferred_paths \
+    $VOLTA_HOME/bin \
+    $HOME/.local/bin \
+    $BUN_INSTALL/bin \
+    $HOME/.cargo/bin \
+    $HOME/go/bin
+
+set -l merged_paths
+for p in $preferred_paths $PATH
+    if test -n "$p"; and not contains -- $p $merged_paths
+        set merged_paths $merged_paths $p
+    end
+end
+
+if test -d "$HOME/.spicetify"; and not contains -- $HOME/.spicetify $merged_paths
+    set merged_paths $merged_paths $HOME/.spicetify
+end
+
+set -gx PATH $merged_paths
 
 if status is-interactive
     # Fish colors aligned with glass + shadcn palette
