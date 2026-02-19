@@ -14,6 +14,7 @@ Configuraciones personales para Arch Linux.
 - `yazi/.config/yazi/keymap.toml`
 - `yazi/.config/yazi/theme.toml`
 - `packages/arch-cli.txt` (paquetes CLI recomendados)
+  - incluye `docker`, `docker-compose` y `docker-buildx`
 - `packages/volta-cli.txt` (CLIs globales de Node gestionados con Volta)
   - si no hay version fijada, instala la version mas reciente disponible
 
@@ -30,6 +31,7 @@ cd ~/dotfiles
 
 # Solo instalar paquetes listados en packages/arch-cli.txt
 # y CLIs de Node listados en packages/volta-cli.txt (si volta esta instalado)
+# tambien configura Docker en Arch (servicio + grupo docker)
 ./install.sh --packages
 
 # Verificar orden de PATH y resolucion de comandos (node/npm/gemini)
@@ -65,3 +67,19 @@ Dentro de cada modulo se replica la ruta real en HOME (`.config/...` o archivos 
 - En `fish`, al abrir una shell login:
   - usa `nitch` si esta instalado
   - si no, usa `fastfetch` como fallback
+
+## Docker en Arch Linux
+- `./install.sh --packages` instala:
+  - `docker`
+  - `docker-compose` (Compose v2, usar `docker compose`)
+  - `docker-buildx`
+- Tras instalar, el script:
+  - habilita/inicia `docker.service` con `systemd`
+  - agrega tu usuario al grupo `docker` si falta
+- Verificacion rapida:
+```bash
+docker --version
+docker compose version
+docker buildx version
+systemctl status docker --no-pager
+```

@@ -1,6 +1,17 @@
 # CLI/system tools for Arch Linux
+
+# Package manager helpers
 yay
+
+# Dev/runtime tooling
 volta-bin
+
+# Container tooling
+docker
+docker-compose
+docker-buildx
+
+# Terminal UX and apps
 nitch-git
 alacritty
 cava
