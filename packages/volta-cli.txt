@@ -4,6 +4,7 @@ node@lts
 pnpm
 yarn
 @anthropic-ai/claude-code
+@github/copilot
 @google/gemini-cli
 svelte-language-server
 tailwindcss
