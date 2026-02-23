@@ -13,6 +13,7 @@ docker-buildx
 
 # Terminal UX and apps
 nitch-git
+nit-bin
 alacritty
 cava
 fastfetch
