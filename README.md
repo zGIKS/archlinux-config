@@ -9,9 +9,6 @@ Configuraciones personales para Arch Linux.
 - `fastfetch/.config/fastfetch/config.jsonc`
 - `fresh/.config/fresh/config.json`
 - `fish/.config/fish/config.fish`
-- `spicetify/.config/spicetify/config-xpui.ini`
-- `spicetify/.config/spicetify/CustomApps/marketplace/*`
-- `spicetify/.config/spicetify/Themes/marketplace/color.ini`
 - `starship/.config/starship.toml`
 - `yazi/.config/yazi/yazi.toml`
 - `yazi/.config/yazi/keymap.toml`
@@ -61,14 +58,8 @@ cd ~/dotfiles
 - Se enlaza con `./install.sh --link` hacia `~/.config/fresh/config.json`.
 - Ejecutar con: `fresh`
 
-## Spotify + Spicetify
-- `./install.sh --packages` instala `spotify` (AUR) y `spicetify-cli` (AUR).
-- `./install.sh --link` enlaza `~/.config/spicetify/` con tu config versionada.
-- Spotify se instala como app; Spicetify es la CLI para personalizar/parchear Spotify.
-- Tras instalar/enlazar, aplicar cambios con `spicetify backup apply` (o `spicetify apply` si ya hay backup).
-
 ## Estructura
-Cada carpeta raiz de configuracion (`alacritty`, `bash`, `cava`, `fastfetch`, `fresh`, `fish`, `spicetify`, `starship`, `yazi`) es un modulo de dotfiles.
+Cada carpeta raiz de configuracion (`alacritty`, `bash`, `cava`, `fastfetch`, `fresh`, `fish`, `starship`, `yazi`) es un modulo de dotfiles.
 Dentro de cada modulo se replica la ruta real en HOME (`.config/...` o archivos en `$HOME`).
 
 ## Nitch (alternativa a fastfetch)
