@@ -16,7 +16,10 @@ nitch-git
 nit-bin
 alacritty
 cava
+discord
 fastfetch
+spotify
+spicetify-cli
 yazi
 fresh-editor
 pipes.sh
