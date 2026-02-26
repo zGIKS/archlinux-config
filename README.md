@@ -1,94 +1,94 @@
 # Dotfiles
 
-Configuraciones personales para Arch Linux.
+Personal configurations for Arch Linux.
 
-## Incluye
+## Includes
 - `alacritty/.config/alacritty/alacritty.toml`
-- `bash/.bashrc` (con init de Starship)
+- `bash/.bashrc` (with Starship init)
 - `cava/.config/cava/config`
 - `fastfetch/.config/fastfetch/config.jsonc`
 - `fish/.config/fish/config.fish`
 - `nvim/.config/nvim/init.lua`
 - `starship/.config/starship.toml`
 - `tmux/.tmux.conf`
-- `wallpapers/Pictures/Wallpapers/` (enlaza a `~/Pictures/Wallpapers`)
+- `wallpapers/Pictures/Wallpapers/` (links to `~/Pictures/Wallpapers`)
 - `yazi/.config/yazi/yazi.toml`
 - `yazi/.config/yazi/keymap.toml`
 - `yazi/.config/yazi/theme.toml`
-- `packages/arch-cli.txt` (paquetes CLI recomendados)
-  - incluye `docker`, `docker-compose` y `docker-buildx`
-- `packages/volta-cli.txt` (CLIs globales de Node gestionados con Volta)
-  - si no hay version fijada, instala la version mas reciente disponible
+- `packages/arch-cli.txt` (recommended CLI packages)
+  - includes `docker`, `docker-compose`, and `docker-buildx`
+- `packages/volta-cli.txt` (Global Node CLIs managed with Volta)
+  - if no fixed version is specified, it installs the latest available version
 
-## Uso rapido
+## Quick Start
 ```bash
 cd ~/dotfiles
 ./install.sh --packages --link
 ```
 
-## Comandos utiles
+## Useful Commands
 ```bash
-# Solo crear/enlazar symlinks
+# Only create/link symlinks
 ./install.sh --link
 
-# Solo instalar paquetes listados en packages/arch-cli.txt
-# y CLIs de Node listados en packages/volta-cli.txt (si volta esta instalado)
-# tambien configura Docker en Arch (servicio + grupo docker)
+# Only install packages listed in packages/arch-cli.txt
+# and Node CLIs listed in packages/volta-cli.txt (if volta is installed)
+# also configures Docker on Arch (service + docker group)
 ./install.sh --packages
 
-# Verificar orden de PATH y resolucion de comandos (node/npm/gemini)
+# Check PATH order and command resolution (node/npm/gemini)
 ./install.sh --check
 
-# Ver estado de enlaces
+# View link status
 ./scripts/status.sh
 
-# Recargar shell actual tras cambios de dotfiles
+# Reload current shell after dotfiles changes
 ./scripts/reload-shell.sh
 ```
 
 ## Yazi
-- Se instala con `./install.sh --packages` (paquete `yazi` en `packages/arch-cli.txt`).
-- Se enlaza con `./install.sh --link` hacia `~/.config/yazi/`.
-- El opener `edit` usa `nvim` para texto/markdown.
-- Archivos versionados:
-  - `~/.config/yazi/yazi.toml` (comportamiento base)
-  - `~/.config/yazi/keymap.toml` (atajos propios)
-  - `~/.config/yazi/theme.toml` (tema alineado con tu paleta)
-- Ejecutar con: `yazi`
+- Installed with `./install.sh --packages` (package `yazi` in `packages/arch-cli.txt`).
+- Linked with `./install.sh --link` to `~/.config/yazi/`.
+- The `edit` opener uses `nvim` for text/markdown.
+- Versioned files:
+  - `~/.config/yazi/yazi.toml` (base behavior)
+  - `~/.config/yazi/keymap.toml` (custom keybindings)
+  - `~/.config/yazi/theme.toml` (theme aligned with your palette)
+- Run with: `yazi`
 
-## Estructura
-Cada carpeta raiz de configuracion (`alacritty`, `bash`, `cava`, `fastfetch`, `fish`, `nvim`, `starship`, `tmux`, `wallpapers`, `yazi`) es un modulo de dotfiles.
-Dentro de cada modulo se replica la ruta real en HOME (`.config/...` o archivos en `$HOME`).
+## Structure
+Each configuration root folder (`alacritty`, `bash`, `cava`, `fastfetch`, `fish`, `nvim`, `starship`, `tmux`, `wallpapers`, `yazi`) is a dotfiles module.
+Inside each module, the real path in HOME is replicated (`.config/...` or files in `$HOME`).
 
 ## Neovim
-- Se instala con `./install.sh --packages` (paquete `neovim` en `packages/arch-cli.txt`).
-- Se enlaza con `./install.sh --link` hacia `~/.config/nvim/init.lua`.
-- Configuracion base incluida:
-  - numeros de linea (`number` + `relativenumber`)
-  - indentacion a 2 espacios
-  - portapapeles del sistema (`unnamedplus`)
-  - atajos con `<leader>` (guardar/cerrar/splits)
+- Installed with `./install.sh --packages` (package `neovim` in `packages/arch-cli.txt`).
+- Linked with `./install.sh --link` to `~/.config/nvim/init.lua`.
+- Base configuration included:
+  - line numbers (`number` + `relativenumber`)
+  - 2-space indentation
+  - system clipboard (`unnamedplus`)
+  - `<leader>` shortcuts (save/close/splits)
 
 ## Wallpapers
-- Carpeta fuente en el repo: `wallpapers/Pictures/Wallpapers/`
-- Ruta final en tu HOME tras enlazar: `~/Pictures/Wallpapers/`
-- Coloca tus wallpapers dentro de esa carpeta del repo para que todo lea desde la misma ruta enlazada.
+- Source folder in the repo: `wallpapers/Pictures/Wallpapers/`
+- Final path in your HOME after linking: `~/Pictures/Wallpapers/`
+- Place your wallpapers inside this repo folder so everything reads from the same linked path.
 
-## Nitch (alternativa a fastfetch)
-- Instalacion: `./install.sh --packages` (usa `packages/arch-cli.txt`).
-- En `fish`, al abrir una shell login:
-  - usa `nitch` si esta instalado
-  - si no, usa `fastfetch` como fallback
+## Nitch (Alternative to fastfetch)
+- Installation: `./install.sh --packages` (uses `packages/arch-cli.txt`).
+- In `fish`, when opening a login shell:
+  - uses `nitch` if installed
+  - if not, uses `fastfetch` as fallback
 
-## Docker en Arch Linux
-- `./install.sh --packages` instala:
+## Docker on Arch Linux
+- `./install.sh --packages` installs:
   - `docker`
-  - `docker-compose` (Compose v2, usar `docker compose`)
+  - `docker-compose` (Compose v2, use `docker compose`)
   - `docker-buildx`
-- Tras instalar, el script:
-  - habilita/inicia `docker.service` con `systemd`
-  - agrega tu usuario al grupo `docker` si falta
-- Verificacion rapida:
+- After installation, the script:
+  - enables/starts `docker.service` with `systemd`
+  - adds your user to the `docker` group if missing
+- Quick verification:
 ```bash
 docker --version
 docker compose version

@@ -14,8 +14,8 @@ case "$current_shell" in
     exec zsh -l
     ;;
   *)
-    echo "Shell no soportada automaticamente: $current_shell"
-    echo "Abre una nueva terminal o ejecuta: exec fish | exec bash -l | exec zsh -l"
+    echo "Shell not automatically supported: $current_shell"
+    echo "Open a new terminal or run: exec fish | exec bash -l | exec zsh -l"
     exit 1
     ;;
 esac

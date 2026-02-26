@@ -26,7 +26,7 @@ for module in "${modules[@]}"; do
       if [[ "$target" == "$src" ]]; then
         echo "OK   $dst -> $src"
       else
-        echo "WARN $dst -> $target (esperado: $src)"
+        echo "WARN $dst -> $target (expected: $src)"
       fi
     else
       echo "MISS $dst"

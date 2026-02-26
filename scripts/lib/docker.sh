@@ -2,43 +2,43 @@
 set -euo pipefail
 
 [[ "${BASH_SOURCE[0]}" != "$0" ]] || {
-  echo "No ejecutar directamente: usar ./install.sh"
+  echo "Do not run directly: use ./install.sh"
   exit 1
 }
 
 configure_docker() {
   if ! command -v docker >/dev/null 2>&1; then
-    echo "docker no disponible; se omite configuracion de servicio/grupo."
+    echo "docker not available; skipping service/group configuration."
     return 0
   fi
 
   if command -v systemctl >/dev/null 2>&1 && [[ -d /run/systemd/system ]]; then
     if systemctl is-enabled docker >/dev/null 2>&1; then
       if ! systemctl is-active docker >/dev/null 2>&1; then
-        echo "Iniciando servicio docker..."
+        echo "Starting docker service..."
         sudo systemctl start docker
       fi
     else
-      echo "Habilitando e iniciando servicio docker..."
+      echo "Enabling and starting docker service..."
       sudo systemctl enable --now docker
     fi
   else
-    echo "systemd no detectado; se omite gestion de docker.service."
+    echo "systemd not detected; skipping docker.service management."
   fi
 
   if id -nG "$USER" | tr ' ' '\n' | grep -qx docker; then
-    echo "Usuario '$USER' ya pertenece al grupo docker."
+    echo "User '$USER' already belongs to the docker group."
   else
-    echo "Agregando usuario '$USER' al grupo docker..."
+    echo "Adding user '$USER' to the docker group..."
     sudo usermod -aG docker "$USER"
-    echo "IMPORTANTE: cierra y abre sesion para aplicar el grupo docker."
+    echo "IMPORTANT: Log out and back in to apply docker group changes."
   fi
 
   if docker compose version >/dev/null 2>&1; then
-    echo "docker compose (v2) disponible."
+    echo "docker compose (v2) available."
   elif command -v docker-compose >/dev/null 2>&1; then
-    echo "docker-compose disponible, pero se recomienda usar 'docker compose'."
+    echo "docker-compose available, but using 'docker compose' is recommended."
   else
-    echo "No se detecta Docker Compose; revisa paquetes docker-compose/docker-compose-plugin."
+    echo "Docker Compose not detected; check docker-compose/docker-compose-plugin packages."
   fi
 }

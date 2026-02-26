@@ -6,7 +6,7 @@ return {
     config = function()
       local ok, ts = pcall(require, "nvim-treesitter.configs")
       if not ok then
-        vim.notify("treesitter no pudo cargarse", vim.log.levels.ERROR)
+        vim.notify("treesitter could not be loaded", vim.log.levels.ERROR)
         return
       end
 

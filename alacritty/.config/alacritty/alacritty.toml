@@ -4,7 +4,7 @@
 #  vers. 4.0.0
 # ─────────────────────────────────────────────────────────────────────────
 
-# ── Window Settings ─────────────────────────────────────────────────────
+# Windows Settings
 [window]
 opacity = 0.94
 blur = false
@@ -12,7 +12,7 @@ padding = { x = 16, y = 16 }
 decorations = "Full"
 dynamic_padding = true
 
-# ── General Settings ────────────────────────────────────────────────────
+# General Settings
 [colors]
 transparent_background_colors = true
 
@@ -23,12 +23,12 @@ TERM = "xterm-256color"
 program = "/usr/bin/fish"
 args = ["-l"]
 
-# ── Font Settings ───────────────────────────────────────────────────────
+# Font Settings
 [font]
 size = 12.0
 builtin_box_drawing = true
 
-# ── Cursor Settings ─────────────────────────────────────────────────────
+# Cursor Settings 
 [cursor]
 style = { shape = "Beam", blinking = "On" }
 blink_interval = 750
@@ -36,7 +36,7 @@ blink_interval = 750
 [cursor.vi_mode_style]
 shape = "Block"
 
-# ── Primary Colours (Glass/Crystal) ─────────────────────────────────────
+# Primary Colours (Glass/Crystal)
 [colors.primary]
 background = "#000000"  # pure black for max transparency effect
 foreground = "#ffffff"  # pure white text
@@ -49,7 +49,7 @@ text   = "#1c1c1e"
 text       = "#1c1c1e"
 background = "#0a84ff"
 
-# ── Normal Palette (macOS-inspired) ─────────────────────────────────────
+#Normal Palette Text (macOS-inspired)
 [colors.normal]
 black   = "#2c2c2e"  # systemGray6
 red     = "#ff453a"  # systemRed
@@ -60,7 +60,7 @@ magenta = "#bf5af2"  # systemPurple
 cyan    = "#64d2ff"  # systemCyan
 white   = "#f5f5f7"  # Apple white
 
-# ── Bright Palette ──────────────────────────────────────────────────────
+# Bright Palette
 [colors.bright]
 black   = "#3a3a3c"  # systemGray5
 red     = "#ff6961"
@@ -71,7 +71,7 @@ magenta = "#da8fff"
 cyan    = "#70d7ff"
 white   = "#ffffff"
 
-# ── Dim Palette ─────────────────────────────────────────────────────────
+# Dim Palette
 [colors.dim]
 black   = "#1c1c1e"
 red     = "#cc3a30"
@@ -82,7 +82,7 @@ magenta = "#9948c2"
 cyan    = "#50a8cc"
 white   = "#c7c7cc"
 
-# ── Hints (URLs, etc.) ──────────────────────────────────────────────────
+# Hint (URLs, etc.)
 [hints]
 alphabet = "jfkdls;ahgurieowpq"
 
@@ -95,11 +95,11 @@ mouse = { enabled = true, mods = "None" }
 binding = { key = "U", mods = "Control|Shift" }
 regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
 
-# ── Scrolling ───────────────────────────────────────────────────────────
+# Scrolling
 [scrolling]
 history = 10000
 multiplier = 3
 
-# ── Bell ────────────────────────────────────────────────────────────────
+# Bell
 [bell]
 duration = 0

@@ -16,13 +16,13 @@ show_help() {
 Usage: ./install.sh [--packages] [--link] [--status] [--check] [--help]
 
 Options:
-  --packages  Instala paquetes CLI de packages/arch-cli.txt y configura Docker.
-  --link      Crea/enlaza dotfiles en $HOME.
-  --status    Muestra estado de enlaces.
-  --check     Verifica orden/estado de PATH para herramientas clave.
-  --help      Muestra esta ayuda.
+  --packages  Installs CLI packages from packages/arch-cli.txt and configures Docker.
+  --link      Creates/links dotfiles in $HOME.
+  --status    Shows link status.
+  --check     Verifies PATH order/status for key tools.
+  --help      Shows this help message.
 
-Si no se pasa ninguna opcion, ejecuta: --link
+If no options are passed, it runs: --link
 EOF
 }
 
@@ -58,7 +58,7 @@ while [[ $# -gt 0 ]]; do
       exit 0
       ;;
     *)
-      echo "Opcion no valida: $1"
+      echo "Invalid option: $1"
       show_help
       exit 1
       ;;
@@ -74,4 +74,4 @@ if $run_check || $run_link || $run_packages; then
   do_check
 fi
 
-echo "Listo."
+echo "Done."

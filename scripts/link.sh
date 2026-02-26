@@ -14,7 +14,7 @@ mapfile -t modules < <(
 )
 
 if [[ ${#modules[@]} -eq 0 ]]; then
-  echo "No se encontraron modulos de dotfiles."
+  echo "No dotfiles modules found."
   exit 0
 fi
 
@@ -26,21 +26,21 @@ for m in "${modules[@]}"; do
 done
 
 if [[ ${#filtered[@]} -eq 0 ]]; then
-  echo "No hay modulos validos para enlazar."
+  echo "No valid modules to link."
   exit 0
 fi
 
 if command -v stow >/dev/null 2>&1; then
-  echo "Usando stow para enlazar: ${filtered[*]}"
+  echo "Using stow to link: ${filtered[*]}"
   (
     cd "$ROOT_DIR"
     stow --target "$HOME_DIR" --restow "${filtered[@]}"
   )
-  echo "Enlaces creados con stow."
+  echo "Links created with stow."
   exit 0
 fi
 
-echo "stow no instalado; usando fallback manual con symlinks."
+echo "stow not installed; using manual symlink fallback."
 for module in "${filtered[@]}"; do
   while IFS= read -r -d '' src; do
     rel="${src#$ROOT_DIR/$module/}"
@@ -50,7 +50,7 @@ for module in "${filtered[@]}"; do
     if [[ -e "$dst" ]]; then
       resolved="$(readlink -f "$dst" || true)"
       if [[ "$resolved" == "$src" ]]; then
-        echo "skip: $dst ya apunta a $src"
+        echo "skip: $dst already points to $src"
         continue
       fi
     fi
@@ -59,4 +59,4 @@ for module in "${filtered[@]}"; do
   done < <(find "$ROOT_DIR/$module" \( -type f -o -type l \) -print0)
 done
 
-echo "Enlaces creados con fallback manual."
+echo "Links created with manual fallback."

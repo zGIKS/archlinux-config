@@ -9,21 +9,21 @@ return {
         function()
           require("telescope.builtin").find_files()
         end,
-        desc = "Buscar archivos",
+        desc = "Find files",
       },
       {
         "<leader>ff",
         function()
           require("telescope.builtin").find_files()
         end,
-        desc = "Buscar archivos",
+        desc = "Find files",
       },
       {
         "<leader>fg",
         function()
           require("telescope.builtin").live_grep()
         end,
-        desc = "Buscar texto",
+        desc = "Find text",
       },
       {
         "<leader>fb",
@@ -37,7 +37,7 @@ return {
         function()
           require("telescope.builtin").help_tags()
         end,
-        desc = "Ayuda",
+        desc = "Help",
       },
     },
     dependencies = {
@@ -47,7 +47,7 @@ return {
     config = function()
       local ok, telescope = pcall(require, "telescope")
       if not ok then
-        vim.notify("telescope no pudo cargarse", vim.log.levels.ERROR)
+        vim.notify("telescope could not be loaded", vim.log.levels.ERROR)
         return
       end
 

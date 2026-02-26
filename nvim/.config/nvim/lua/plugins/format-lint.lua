@@ -9,7 +9,7 @@ return {
         function()
           require("conform").format({ async = true, lsp_fallback = true })
         end,
-        desc = "Formatear buffer",
+        desc = "Format buffer",
       },
     },
     opts = {
@@ -33,7 +33,7 @@ return {
     config = function()
       local ok, lint = pcall(require, "lint")
       if not ok then
-        vim.notify("nvim-lint no pudo cargarse", vim.log.levels.ERROR)
+        vim.notify("nvim-lint could not be loaded", vim.log.levels.ERROR)
         return
       end
 

@@ -13,7 +13,7 @@ return {
       local ok_cmp, cmp = pcall(require, "cmp")
       local ok_luasnip, luasnip = pcall(require, "luasnip")
       if not ok_cmp or not ok_luasnip then
-        vim.notify("nvim-cmp o LuaSnip no pudieron cargarse", vim.log.levels.ERROR)
+        vim.notify("nvim-cmp or LuaSnip could not be loaded", vim.log.levels.ERROR)
         return
       end
 

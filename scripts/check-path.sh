@@ -19,9 +19,9 @@ check_no_duplicates() {
   total=$(tr ':' '\n' <<<"$path_value" | sed '/^$/d' | wc -l)
   unique=$(tr ':' '\n' <<<"$path_value" | sed '/^$/d' | awk '!seen[$0]++' | wc -l)
   if [[ "$total" -ne "$unique" ]]; then
-    report_fail "$name PATH tiene entradas duplicadas ($total totales, $unique unicas)."
+    report_fail "$name PATH has duplicate entries ($total total, $unique unique)."
   else
-    echo "OK: $name PATH sin duplicados"
+    echo "OK: $name PATH without duplicates"
   fi
 }
 
@@ -33,13 +33,13 @@ if BASH_OUT=$(bash -ic 'printf "PATH=%s\n" "$PATH"; command -v node; command -v 
   BASH_GEMINI=$(sed -n '4p' <<<"$BASH_OUT")
 
   check_no_duplicates "bash" "$BASH_PATH"
-  [[ "$BASH_NODE" == "$HOME/.volta/bin/"* ]] || report_fail "bash usa node desde '$BASH_NODE'"
-  [[ "$BASH_NPM" == "$HOME/.volta/bin/"* ]] || report_fail "bash usa npm desde '$BASH_NPM'"
+  [[ "$BASH_NODE" == "$HOME/.volta/bin/"* ]] || report_fail "bash uses node from '$BASH_NODE'"
+  [[ "$BASH_NPM" == "$HOME/.volta/bin/"* ]] || report_fail "bash uses npm from '$BASH_NPM'"
 
   if [[ -z "$BASH_GEMINI" ]]; then
-    report_warn "bash no encuentra gemini (si no lo usas, puedes ignorar esto)."
+    report_warn "bash cannot find gemini (if you don't use it, you can ignore this)."
   elif [[ "$BASH_GEMINI" != "$HOME/.volta/bin/"* ]]; then
-    report_fail "bash usa gemini desde '$BASH_GEMINI'"
+    report_fail "bash uses gemini from '$BASH_GEMINI'"
   else
     echo "OK: bash gemini -> $BASH_GEMINI"
   fi
@@ -47,7 +47,7 @@ if BASH_OUT=$(bash -ic 'printf "PATH=%s\n" "$PATH"; command -v node; command -v 
   [[ "$BASH_NODE" == "$HOME/.volta/bin/"* ]] && echo "OK: bash node -> $BASH_NODE"
   [[ "$BASH_NPM" == "$HOME/.volta/bin/"* ]] && echo "OK: bash npm -> $BASH_NPM"
 else
-  report_fail "No se pudo evaluar bash con ~/.bashrc"
+  report_fail "Could not evaluate bash with ~/.bashrc"
 fi
 
 echo
@@ -61,13 +61,13 @@ if command -v fish >/dev/null 2>&1; then
 
     check_no_duplicates "fish" "$FISH_PATH"
 
-    [[ "$FISH_NODE" == "$HOME/.volta/bin/"* ]] || report_fail "fish usa node desde '$FISH_NODE'"
-    [[ "$FISH_NPM" == "$HOME/.volta/bin/"* ]] || report_fail "fish usa npm desde '$FISH_NPM'"
+    [[ "$FISH_NODE" == "$HOME/.volta/bin/"* ]] || report_fail "fish uses node from '$FISH_NODE'"
+    [[ "$FISH_NPM" == "$HOME/.volta/bin/"* ]] || report_fail "fish uses npm from '$FISH_NPM'"
 
     if [[ -z "$FISH_GEMINI" ]]; then
-      report_warn "fish no encuentra gemini (si no lo usas, puedes ignorar esto)."
+      report_warn "fish cannot find gemini (if you don't use it, you can ignore this)."
     elif [[ "$FISH_GEMINI" != "$HOME/.volta/bin/"* ]]; then
-      report_fail "fish usa gemini desde '$FISH_GEMINI'"
+      report_fail "fish uses gemini from '$FISH_GEMINI'"
     else
       echo "OK: fish gemini -> $FISH_GEMINI"
     fi
@@ -75,7 +75,7 @@ if command -v fish >/dev/null 2>&1; then
     [[ "$FISH_NODE" == "$HOME/.volta/bin/"* ]] && echo "OK: fish node -> $FISH_NODE"
     [[ "$FISH_NPM" == "$HOME/.volta/bin/"* ]] && echo "OK: fish npm -> $FISH_NPM"
   else
-    report_warn "No se pudo evaluar fish; valida manualmente con: type -a node npm gemini"
+    report_warn "Could not evaluate fish; validate manually with: type -a node npm gemini"
   fi
 fi
 

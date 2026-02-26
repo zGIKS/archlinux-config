@@ -2,7 +2,7 @@
 set -euo pipefail
 
 [[ "${BASH_SOURCE[0]}" != "$0" ]] || {
-  echo "No ejecutar directamente: usar ./install.sh"
+  echo "Do not run directly: use ./install.sh"
   exit 1
 }
 

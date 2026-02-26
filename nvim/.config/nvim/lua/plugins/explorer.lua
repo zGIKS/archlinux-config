@@ -3,14 +3,14 @@ return {
     "nvim-tree/nvim-tree.lua",
     cmd = { "NvimTreeToggle", "NvimTreeFocus" },
     keys = {
-      { "<C-b>", "<cmd>NvimTreeToggle<cr>", desc = "Explorador" },
-      { "<leader>e", "<cmd>NvimTreeFocus<cr>", desc = "Enfocar explorador" },
+      { "<C-b>", "<cmd>NvimTreeToggle<cr>", desc = "File Explorer" },
+      { "<leader>e", "<cmd>NvimTreeFocus<cr>", desc = "Focus File Explorer" },
     },
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       local ok, nvim_tree = pcall(require, "nvim-tree")
       if not ok then
-        vim.notify("nvim-tree no pudo cargarse", vim.log.levels.ERROR)
+        vim.notify("nvim-tree could not be loaded", vim.log.levels.ERROR)
         return
       end
 

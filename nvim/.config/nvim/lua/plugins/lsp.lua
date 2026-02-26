@@ -20,14 +20,13 @@ return {
       "hrsh7th/cmp-nvim-lsp",
     },
     config = function()
-      if vim.fn.has("nvim-0.11") == 0 then
-        vim.notify("La config LSP actual requiere Neovim 0.11+", vim.log.levels.WARN)
-        return
-      end
+      -- Use the new lsp.config/enable if available (Nvim 0.11+),
+      -- otherwise fallback to the traditional setup (Nvim 0.10).
+      local has_new_lsp = vim.lsp.config ~= nil
 
       local ok_cmp, cmp_lsp = pcall(require, "cmp_nvim_lsp")
       if not ok_cmp then
-        vim.notify("cmp_nvim_lsp no pudo cargarse", vim.log.levels.ERROR)
+        vim.notify("cmp_nvim_lsp could not be loaded", vim.log.levels.ERROR)
         return
       end
 
@@ -38,13 +37,13 @@ return {
           vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
         end
 
-        map("n", "gd", vim.lsp.buf.definition, "LSP: Ir a definición")
-        map("n", "gr", vim.lsp.buf.references, "LSP: Referencias")
+        map("n", "gd", vim.lsp.buf.definition, "LSP: Go to definition")
+        map("n", "gr", vim.lsp.buf.references, "LSP: References")
         map("n", "K", vim.lsp.buf.hover, "LSP: Hover")
-        map("n", "<leader>rn", vim.lsp.buf.rename, "LSP: Renombrar")
+        map("n", "<leader>rn", vim.lsp.buf.rename, "LSP: Rename")
         map("n", "<leader>ca", vim.lsp.buf.code_action, "LSP: Code action")
-        map("n", "[d", vim.diagnostic.goto_prev, "Diag anterior")
-        map("n", "]d", vim.diagnostic.goto_next, "Diag siguiente")
+        map("n", "[d", vim.diagnostic.goto_prev, "Previous diagnostic")
+        map("n", "]d", vim.diagnostic.goto_next, "Next diagnostic")
       end
 
       local servers = {
@@ -58,11 +57,17 @@ return {
         bashls = {},
       }
 
+      local lspconfig = require("lspconfig")
       for server, server_opts in pairs(servers) do
         server_opts.capabilities = capabilities
         server_opts.on_attach = on_attach
-        vim.lsp.config(server, server_opts)
-        vim.lsp.enable(server)
+
+        if has_new_lsp then
+          vim.lsp.config(server, server_opts)
+          vim.lsp.enable(server)
+        else
+          lspconfig[server].setup(server_opts)
+        end
       end
     end,
   },

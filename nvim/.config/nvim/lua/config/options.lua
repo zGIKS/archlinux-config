@@ -26,6 +26,12 @@ opt.splitright = true
 opt.splitbelow = true
 opt.scrolloff = 8
 
+-- Backup and Swap files (Disabled to avoid annoying popups)
+opt.swapfile = false
+opt.backup = false
+opt.writebackup = false
+opt.undofile = true -- Persistent undo: saves undo history to disk
+
 -- Prevents lag and clipboard leaks over SSH; maintains convenience locally.
 if vim.env.SSH_TTY or vim.env.SSH_CONNECTION then
   opt.clipboard = ""
