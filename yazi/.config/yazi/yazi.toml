@@ -8,9 +8,13 @@ show_symlink = true
 scrolloff = 5
 
 [preview]
+preview_protocol = "sixel"
 tab_size = 2
-max_width = 1600
-max_height = 1200
+max_width = 800
+max_height = 600
+image_filter = "triangle"  # Much faster than lanczos3
+image_quality = 50        # Sufficient for terminal preview
+sixel_fraction = 12       # Balanced Sixel rendering
 
 [opener]
 edit = [

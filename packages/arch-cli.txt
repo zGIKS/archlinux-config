@@ -5,6 +5,7 @@ yay
 
 # Dev/runtime tooling
 volta-bin
+chafa
 
 # Container tooling
 docker
