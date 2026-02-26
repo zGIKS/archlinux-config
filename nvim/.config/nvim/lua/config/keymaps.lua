@@ -1,14 +1,35 @@
-vim.keymap.set("n", "<leader>w", "<cmd>write<cr>", { desc = "Guardar archivo" })
-vim.keymap.set("n", "<leader>q", "<cmd>quit<cr>", { desc = "Cerrar ventana" })
-vim.keymap.set("n", "<leader>x", "<cmd>bdelete<cr>", { desc = "Cerrar buffer" })
-vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<cr>", { desc = "Quitar resaltado" })
+vim.keymap.set({ "n", "i", "v" }, "<C-s>", "<cmd>w!<cr><esc>", { desc = "Save file" })
+vim.keymap.set("n", "<leader>q", "<cmd>quit<cr>", { desc = "Close window" })
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<cr>", { desc = "Clear highlight" })
 
-vim.keymap.set({ "n", "i", "v" }, "<C-s>", "<cmd>write<cr>", { desc = "Guardar" })
+-- Select all
+vim.keymap.set("n", "<C-a>", "ggVG", { desc = "Select all" })
 
-vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Ir a ventana izquierda" })
-vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Ir a ventana abajo" })
-vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Ir a ventana arriba" })
-vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Ir a ventana derecha" })
+-- Copy / Paste (VS Code style)
+vim.keymap.set("v", "<C-c>", "y", { desc = "Copy" })
+vim.keymap.set("v", "<C-x>", "d", { desc = "Cut" })
+vim.keymap.set({ "n", "v" }, "<C-v>", "p", { desc = "Paste" })
+vim.keymap.set("i", "<C-v>", "<C-r>+", { desc = "Paste from insert mode" })
 
-vim.keymap.set("n", "<leader>sv", "<cmd>vsplit<cr>", { desc = "Split vertical" })
-vim.keymap.set("n", "<leader>sh", "<cmd>split<cr>", { desc = "Split horizontal" })
+-- Undo / Redo
+vim.keymap.set({ "n", "i", "v" }, "<C-z>", "<cmd>undo<cr>", { desc = "Undo" })
+vim.keymap.set({ "n", "i", "v" }, "<C-y>", "<cmd>redo<cr>", { desc = "Redo" })
+
+-- Move lines (Alt + j/k or Alt + arrows)
+vim.keymap.set("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move line down" })
+vim.keymap.set("n", "<A-k>", "<cmd>m .-2<cr>==", { desc = "Move line up" })
+vim.keymap.set("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move selection down" })
+vim.keymap.set("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move selection up" })
+
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to bottom window" })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to top window" })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
+
+vim.keymap.set("n", "<leader>sv", "<cmd>vsplit<cr>", { desc = "Vertical split" })
+vim.keymap.set("n", "<leader>sh", "<cmd>split<cr>", { desc = "Horizontal split" })
+
+-- Buffer navigation (Bufferline)
+vim.keymap.set("n", "L", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
+vim.keymap.set("n", "H", "<cmd>BufferLineCyclePrev<cr>", { desc = "Previous buffer" })
+vim.keymap.set("n", "<leader>x", "<cmd>bdelete<cr>", { desc = "Close buffer" })

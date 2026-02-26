@@ -7,7 +7,7 @@ local function bootstrap_lazy()
     return
   end
 
-  vim.notify("Instalando lazy.nvim (commit fijado)...", vim.log.levels.INFO)
+  vim.notify("Installing lazy.nvim (fixed commit)...", vim.log.levels.INFO)
 
   vim.fn.system({
     "git",
@@ -17,14 +17,14 @@ local function bootstrap_lazy()
     lazypath,
   })
   if vim.v.shell_error ~= 0 then
-    vim.notify("No se pudo clonar lazy.nvim", vim.log.levels.ERROR)
+    vim.notify("Could not clone lazy.nvim", vim.log.levels.ERROR)
     return
   end
 
   vim.fn.system({ "git", "-C", lazypath, "checkout", lazy_commit })
   if vim.v.shell_error ~= 0 then
     vim.notify(
-      "No se pudo fijar lazy.nvim al commit " .. lazy_commit,
+      "Could not pin lazy.nvim to commit " .. lazy_commit,
       vim.log.levels.ERROR
     )
     return

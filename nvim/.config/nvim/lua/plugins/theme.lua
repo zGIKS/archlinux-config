@@ -12,7 +12,7 @@ return {
         floats = "transparent",
       },
       on_colors = function(colors)
-        -- Ajuste leve para acercarlo a tu paleta azul/cyan de Alacritty.
+        -- Slight adjustment to match your blue/cyan Alacritty palette.
         colors.blue = "#0a84ff"
         colors.cyan = "#64d2ff"
       end,
@@ -20,7 +20,7 @@ return {
     config = function(_, opts)
       local ok, tokyonight = pcall(require, "tokyonight")
       if not ok then
-        vim.notify("tokyonight no pudo cargarse", vim.log.levels.ERROR)
+        vim.notify("tokyonight could not be loaded", vim.log.levels.ERROR)
         return
       end
 
@@ -28,7 +28,7 @@ return {
 
       local ok_cs, err = pcall(vim.cmd.colorscheme, "tokyonight")
       if not ok_cs then
-        vim.notify("No se pudo aplicar tokyonight: " .. err, vim.log.levels.ERROR)
+        vim.notify("Could not apply tokyonight: " .. err, vim.log.levels.ERROR)
       end
     end,
   },

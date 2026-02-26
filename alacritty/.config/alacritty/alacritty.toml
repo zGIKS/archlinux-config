@@ -9,7 +9,7 @@
 opacity = 0.94
 blur = false
 padding = { x = 16, y = 16 }
-decorations = "None"
+decorations = "Full"
 dynamic_padding = true
 
 # ── General Settings ────────────────────────────────────────────────────

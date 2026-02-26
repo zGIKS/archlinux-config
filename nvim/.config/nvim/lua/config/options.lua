@@ -26,13 +26,13 @@ opt.splitright = true
 opt.splitbelow = true
 opt.scrolloff = 8
 
--- Evita lag y fugas del clipboard al usar SSH; localmente mantiene comodidad.
+-- Prevents lag and clipboard leaks over SSH; maintains convenience locally.
 if vim.env.SSH_TTY or vim.env.SSH_CONNECTION then
   opt.clipboard = ""
 else
   opt.clipboard = "unnamedplus"
 end
 
--- nvim-tree reemplaza netrw
+-- nvim-tree replaces netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
