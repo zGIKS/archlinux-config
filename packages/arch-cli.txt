@@ -15,6 +15,7 @@ docker-buildx
 nitch-git
 nit-bin
 alacritty
+tmux
 cava
 discord
 fastfetch

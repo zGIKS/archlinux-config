@@ -10,6 +10,8 @@ Configuraciones personales para Arch Linux.
 - `fresh/.config/fresh/config.json`
 - `fish/.config/fish/config.fish`
 - `starship/.config/starship.toml`
+- `tmux/.tmux.conf`
+- `wallpapers/Pictures/Wallpapers/` (enlaza a `~/Pictures/Wallpapers`)
 - `yazi/.config/yazi/yazi.toml`
 - `yazi/.config/yazi/keymap.toml`
 - `yazi/.config/yazi/theme.toml`
@@ -59,8 +61,13 @@ cd ~/dotfiles
 - Ejecutar con: `fresh`
 
 ## Estructura
-Cada carpeta raiz de configuracion (`alacritty`, `bash`, `cava`, `fastfetch`, `fresh`, `fish`, `starship`, `yazi`) es un modulo de dotfiles.
+Cada carpeta raiz de configuracion (`alacritty`, `bash`, `cava`, `fastfetch`, `fresh`, `fish`, `starship`, `tmux`, `wallpapers`, `yazi`) es un modulo de dotfiles.
 Dentro de cada modulo se replica la ruta real en HOME (`.config/...` o archivos en `$HOME`).
+
+## Wallpapers
+- Carpeta fuente en el repo: `wallpapers/Pictures/Wallpapers/`
+- Ruta final en tu HOME tras enlazar: `~/Pictures/Wallpapers/`
+- Coloca tus wallpapers dentro de esa carpeta del repo para que todo lea desde la misma ruta enlazada.
 
 ## Nitch (alternativa a fastfetch)
 - Instalacion: `./install.sh --packages` (usa `packages/arch-cli.txt`).
