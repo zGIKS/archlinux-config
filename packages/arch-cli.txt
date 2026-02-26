@@ -23,7 +23,6 @@ fastfetch
 spotify
 spicetify-cli
 yazi
-fresh-editor
 pipes.sh
 cmatrix
 starship

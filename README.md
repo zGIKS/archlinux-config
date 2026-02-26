@@ -49,6 +49,7 @@ cd ~/dotfiles
 ## Yazi
 - Se instala con `./install.sh --packages` (paquete `yazi` en `packages/arch-cli.txt`).
 - Se enlaza con `./install.sh --link` hacia `~/.config/yazi/`.
+- El opener `edit` usa `nvim` para texto/markdown.
 - Archivos versionados:
   - `~/.config/yazi/yazi.toml` (comportamiento base)
   - `~/.config/yazi/keymap.toml` (atajos propios)
