@@ -7,8 +7,8 @@ Configuraciones personales para Arch Linux.
 - `bash/.bashrc` (con init de Starship)
 - `cava/.config/cava/config`
 - `fastfetch/.config/fastfetch/config.jsonc`
-- `fresh/.config/fresh/config.json`
 - `fish/.config/fish/config.fish`
+- `nvim/.config/nvim/init.lua`
 - `starship/.config/starship.toml`
 - `tmux/.tmux.conf`
 - `wallpapers/Pictures/Wallpapers/` (enlaza a `~/Pictures/Wallpapers`)
@@ -55,14 +55,18 @@ cd ~/dotfiles
   - `~/.config/yazi/theme.toml` (tema alineado con tu paleta)
 - Ejecutar con: `yazi`
 
-## Fresh
-- Se instala con `./install.sh --packages` (paquete `fresh-editor` en AUR).
-- Se enlaza con `./install.sh --link` hacia `~/.config/fresh/config.json`.
-- Ejecutar con: `fresh`
-
 ## Estructura
-Cada carpeta raiz de configuracion (`alacritty`, `bash`, `cava`, `fastfetch`, `fresh`, `fish`, `starship`, `tmux`, `wallpapers`, `yazi`) es un modulo de dotfiles.
+Cada carpeta raiz de configuracion (`alacritty`, `bash`, `cava`, `fastfetch`, `fish`, `nvim`, `starship`, `tmux`, `wallpapers`, `yazi`) es un modulo de dotfiles.
 Dentro de cada modulo se replica la ruta real en HOME (`.config/...` o archivos en `$HOME`).
+
+## Neovim
+- Se instala con `./install.sh --packages` (paquete `neovim` en `packages/arch-cli.txt`).
+- Se enlaza con `./install.sh --link` hacia `~/.config/nvim/init.lua`.
+- Configuracion base incluida:
+  - numeros de linea (`number` + `relativenumber`)
+  - indentacion a 2 espacios
+  - portapapeles del sistema (`unnamedplus`)
+  - atajos con `<leader>` (guardar/cerrar/splits)
 
 ## Wallpapers
 - Carpeta fuente en el repo: `wallpapers/Pictures/Wallpapers/`

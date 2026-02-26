@@ -14,7 +14,7 @@ max_height = 1200
 
 [opener]
 edit = [
-  { run = 'fresh "$@"', block = true, for = "unix" },
+  { run = 'nvim "$@"', block = true, for = "unix" },
 ]
 open = [
   { run = 'xdg-open "$1"', orphan = true, desc = "Open" },
