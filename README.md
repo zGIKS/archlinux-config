@@ -16,9 +16,8 @@ Personal configurations for Arch Linux.
 - `yazi/.config/yazi/keymap.toml`
 - `yazi/.config/yazi/theme.toml`
 - `packages/arch-cli.txt` (recommended CLI packages)
-  - includes `docker`, `docker-compose`, and `docker-buildx`
-- `packages/volta-cli.txt` (Global Node CLIs managed with Volta)
-  - if no fixed version is specified, it installs the latest available version
+- `packages/languages-tools.txt` (single manifest for Python/Go/Rust/Java/Node/Docker tooling)
+  - includes language runtimes plus toolchains/tooling (Rust, Go, Node via Volta, Docker, UV)
 
 ## Quick Start
 ```bash
@@ -32,7 +31,7 @@ cd ~/dotfiles
 ./install.sh --link
 
 # Only install packages listed in packages/arch-cli.txt
-# and Node CLIs listed in packages/volta-cli.txt (if volta is installed)
+# plus language runtimes/tooling from packages/languages-tools.txt
 # also configures Docker on Arch (service + docker group)
 ./install.sh --packages
 
@@ -81,7 +80,7 @@ Inside each module, the real path in HOME is replicated (`.config/...` or files 
   - if not, uses `fastfetch` as fallback
 
 ## Docker on Arch Linux
-- `./install.sh --packages` installs:
+- `./install.sh --packages` installs from `packages/languages-tools.txt`:
   - `docker`
   - `docker-compose` (Compose v2, use `docker compose`)
   - `docker-buildx`
@@ -94,4 +93,14 @@ docker --version
 docker compose version
 docker buildx version
 systemctl status docker --no-pager
+```
+
+## Python with UV
+- `uv` is installed with `./install.sh --packages` (from `packages/languages-tools.txt`).
+- Keep using `pip` only as compatibility fallback for legacy scripts.
+- Recommended daily workflow:
+```bash
+uv venv
+source .venv/bin/activate
+uv pip install -r requirements.txt
 ```

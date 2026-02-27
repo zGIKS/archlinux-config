@@ -3,27 +3,22 @@
 # Package manager helpers
 yay
 
-# Dev/runtime tooling
+# Dev/runtime manager
 volta-bin
 
-# Container tooling
-docker
-docker-compose
-docker-buildx
-
-# Terminal UX and apps
-nitch-git
-nit-bin
+# Shell and terminal
 alacritty
-neovim
-tmux
+bash-completion
 cava
+cmatrix
 discord
 fastfetch
+neovim
+nit-bin
+nitch-git
+pipes.sh
 spotify
 spicetify-cli
-yazi
-pipes.sh
-cmatrix
 starship
-bash-completion
+tmux
+yazi

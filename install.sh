@@ -3,20 +3,27 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PACKAGES_FILE="$ROOT_DIR/packages/arch-cli.txt"
-VOLTA_PACKAGES_FILE="$ROOT_DIR/packages/volta-cli.txt"
+LANGUAGE_TOOLS_FILE="$ROOT_DIR/packages/languages-tools.txt"
 LIB_DIR="$ROOT_DIR/scripts/lib"
+TOOLS_DIR="$ROOT_DIR/scripts/tools"
 
 source "$LIB_DIR/packages.sh"
-source "$LIB_DIR/docker.sh"
-source "$LIB_DIR/volta.sh"
 source "$LIB_DIR/ops.sh"
+source "$TOOLS_DIR/common.sh"
+source "$TOOLS_DIR/docker.sh"
+source "$TOOLS_DIR/pacman.sh"
+source "$TOOLS_DIR/rust.sh"
+source "$TOOLS_DIR/go.sh"
+source "$TOOLS_DIR/uv.sh"
+source "$TOOLS_DIR/volta.sh"
+source "$TOOLS_DIR/languages.sh"
 
 show_help() {
   cat <<'EOF'
 Usage: ./install.sh [--packages] [--link] [--status] [--check] [--help]
 
 Options:
-  --packages  Installs CLI packages from packages/arch-cli.txt and configures Docker.
+  --packages  Installs CLI packages and language tooling from packages/*.txt.
   --link      Creates/links dotfiles in $HOME.
   --status    Shows link status.
   --check     Verifies PATH order/status for key tools.
@@ -66,8 +73,8 @@ while [[ $# -gt 0 ]]; do
 done
 
 $run_packages && install_packages
+$run_packages && install_language_tools
 $run_packages && configure_docker
-$run_packages && install_volta_packages
 $run_link && do_link
 $run_status && do_status
 if $run_check || $run_link || $run_packages; then

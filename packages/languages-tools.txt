@@ -1,0 +1,63 @@
+# Unified language/runtime/tooling manifest.
+# Format: manager|value
+#
+# Supported managers:
+# - pacman|<package>
+# - rustup-toolchain|<toolchain>
+# - rustup-component|<component>[@toolchain]
+# - rustup-target|<target>[@toolchain]
+# - cargo|<crate>[@version]
+# - go|<module/path@version>
+# - uv-tool|<package>
+# - volta|<package>[@version]
+
+# Base language runtimes/toolchains
+pacman|python
+pacman|python-pip
+pacman|uv
+pacman|go
+pacman|rustup
+pacman|jdk-openjdk
+
+# Container tooling
+pacman|docker
+pacman|docker-compose
+pacman|docker-buildx
+
+# Rustup setup
+rustup-toolchain|stable
+rustup-component|cargo
+rustup-component|clippy
+rustup-component|rust-docs
+rustup-component|rust-src
+rustup-component|rustfmt
+rustup-component|rust-analyzer
+rustup-component|rustc
+rustup-target|x86_64-unknown-linux-gnu
+rustup-target|wasm32-unknown-unknown
+
+# Cargo CLI tooling
+cargo|cargo-audit
+
+# Go CLI tooling
+go|golang.org/x/tools/gopls@latest
+go|honnef.co/go/tools/cmd/staticcheck@latest
+go|github.com/swaggo/swag/cmd/swag@latest
+
+# Node tooling via Volta
+volta|node@lts
+volta|pnpm
+volta|yarn
+volta|@anthropic-ai/claude-code
+volta|@github/copilot
+volta|@google/gemini-cli
+volta|eslint
+volta|prettier
+volta|tailwindcss
+volta|typescript
+volta|typescript-language-server
+volta|@tailwindcss/language-server
+volta|bash-language-server
+volta|pyright
+volta|svelte-language-server
+volta|vscode-langservers-extracted
