@@ -10,7 +10,7 @@ Personal configurations for Arch Linux.
 - `fish/.config/fish/config.fish`
 - `nvim/.config/nvim/init.lua`
 - `starship/.config/starship.toml`
-- `tmux/.tmux.conf`
+- `zellij/.config/zellij/config.kdl`
 - `wallpapers/Pictures/Wallpapers/` (links to `~/Pictures/Wallpapers`)
 - `yazi/.config/yazi/yazi.toml`
 - `yazi/.config/yazi/keymap.toml`
@@ -56,7 +56,7 @@ cd ~/dotfiles
 - Run with: `yazi`
 
 ## Structure
-Each configuration root folder (`alacritty`, `bash`, `cava`, `fastfetch`, `fish`, `nvim`, `starship`, `tmux`, `wallpapers`, `yazi`) is a dotfiles module.
+Each configuration root folder (`alacritty`, `bash`, `cava`, `fastfetch`, `fish`, `nvim`, `starship`, `wallpapers`, `yazi`, `zellij`) is a dotfiles module.
 Inside each module, the real path in HOME is replicated (`.config/...` or files in `$HOME`).
 
 ## Neovim

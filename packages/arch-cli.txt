@@ -20,5 +20,5 @@ pipes.sh
 spotify
 spicetify-cli
 starship
-tmux
+zellij
 yazi
