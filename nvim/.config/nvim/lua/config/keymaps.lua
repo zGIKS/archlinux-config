@@ -1,4 +1,6 @@
-vim.keymap.set({ "n", "i", "v" }, "<C-s>", "<cmd>w!<cr><esc>", { desc = "Save file" })
+vim.keymap.set("n", "<C-s>", "<cmd>w!<cr>", { desc = "Save file" })
+vim.keymap.set("v", "<C-s>", "<cmd>w!<cr>", { desc = "Save file" })
+vim.keymap.set("i", "<C-s>", "<cmd>w!<cr>", { desc = "Save file", silent = true })
 vim.keymap.set("n", "<leader>q", "<cmd>quit<cr>", { desc = "Close window" })
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<cr>", { desc = "Clear highlight" })
 

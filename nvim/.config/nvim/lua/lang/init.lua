@@ -3,7 +3,10 @@ local M = {}
 local language_modules = {
   "lang.rust",
   "lang.go",
+  "lang.python",
+  "lang.web",
   "lang.java",
+  "lang.latex",
 }
 
 local function add_unique(list, seen, item)
@@ -54,9 +57,15 @@ end
 function M.collect_lsp_servers()
   local servers = {}
   for _, spec in ipairs(M.get_specs()) do
-    local lsp = spec.lsp
-    if lsp and lsp.server then
-      servers[lsp.server] = vim.tbl_deep_extend("force", servers[lsp.server] or {}, lsp.opts or {})
+    local function merge_server(entry)
+      if entry and entry.server then
+        servers[entry.server] = vim.tbl_deep_extend("force", servers[entry.server] or {}, entry.opts or {})
+      end
+    end
+
+    merge_server(spec.lsp)
+    for _, lsp in ipairs(spec.lsp_servers or {}) do
+      merge_server(lsp)
     end
   end
   return servers

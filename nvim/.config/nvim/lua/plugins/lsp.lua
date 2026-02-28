@@ -112,10 +112,19 @@ return {
         end
       else
         local lspconfig = require("lspconfig")
+        local server_alias = {
+          ts_ls = "tsserver",
+        }
         for server, server_opts in pairs(servers) do
+          local resolved = lspconfig[server] and server or server_alias[server]
+          if not resolved or not lspconfig[resolved] then
+            vim.notify("LSP server not found in lspconfig: " .. server, vim.log.levels.WARN)
+            goto continue
+          end
           server_opts.capabilities = capabilities
           server_opts.on_attach = on_attach
-          lspconfig[server].setup(server_opts)
+          lspconfig[resolved].setup(server_opts)
+          ::continue::
         end
       end
     end,

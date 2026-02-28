@@ -1,5 +1,23 @@
 return {
+  mason = { "jdtls" },
   treesitter = { "java" },
-  -- jdtls setup is intentionally left out because it is project-root dependent.
-  -- Add lsp = { server = "jdtls", opts = { ... } } when you are ready to configure it.
+  lsp = {
+    server = "jdtls",
+    opts = {
+      root_dir = function(fname)
+        return require("lspconfig.util").root_pattern(
+          ".git",
+          "pom.xml",
+          "build.gradle",
+          "build.gradle.kts",
+          "settings.gradle",
+          "settings.gradle.kts"
+        )(fname)
+      end,
+      single_file_support = false,
+    },
+  },
+  conform = {
+    java = { "google-java-format" },
+  },
 }

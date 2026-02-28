@@ -18,6 +18,7 @@ pacman|uv
 pacman|go
 pacman|rustup
 pacman|jdk-openjdk
+pacman|google-java-format
 
 # Container tooling
 pacman|docker
@@ -45,6 +46,10 @@ go|golang.org/x/tools/gopls@latest
 go|honnef.co/go/tools/cmd/staticcheck@latest
 go|github.com/swaggo/swag/cmd/swag@latest
 
+# Python CLI tooling
+uv-tool|ruff
+uv-tool|black
+
 # Node tooling via Volta
 volta|node@lts
 volta|pnpm
@@ -54,6 +59,7 @@ volta|@github/copilot
 volta|@google/gemini-cli
 volta|eslint
 volta|prettier
+volta|@astrojs/language-server
 volta|tailwindcss
 volta|typescript
 volta|typescript-language-server
