@@ -12,25 +12,35 @@ return {
         desc = "Format buffer",
       },
     },
-    opts = {
-      format_on_save = function(_)
-        return {
-          timeout_ms = 750,
-          lsp_fallback = true,
-        }
-      end,
-      formatters_by_ft = {
+    opts = function()
+      local lang = require("lang")
+      local formatters_by_ft = {
         lua = { "stylua" },
         sh = { "shfmt" },
         bash = { "shfmt" },
         zsh = { "shfmt" },
-      },
-    },
+      }
+
+      for ft, tools in pairs(lang.collect_conform()) do
+        formatters_by_ft[ft] = tools
+      end
+
+      return {
+        format_on_save = function(_)
+          return {
+            timeout_ms = 750,
+            lsp_fallback = true,
+          }
+        end,
+        formatters_by_ft = formatters_by_ft,
+      }
+    end,
   },
   {
     "mfussenegger/nvim-lint",
     event = { "BufReadPost", "BufWritePost", "InsertLeave" },
     config = function()
+      local lang = require("lang")
       local ok, lint = pcall(require, "lint")
       if not ok then
         vim.notify("nvim-lint could not be loaded", vim.log.levels.ERROR)
@@ -42,6 +52,9 @@ return {
         bash = { "shellcheck" },
         zsh = { "shellcheck" },
       }
+      for ft, tools in pairs(lang.collect_lint()) do
+        lint.linters_by_ft[ft] = tools
+      end
 
       local lint_augroup = vim.api.nvim_create_augroup("dotfiles_lint", { clear = true })
       vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {

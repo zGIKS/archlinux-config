@@ -10,19 +10,33 @@ return {
     dependencies = {
       "williamboman/mason.nvim",
     },
-    opts = {
-      ensure_installed = {
+    opts = function()
+      local lang = require("lang")
+      local ensure_installed = {
         "lua-language-server",
         "bash-language-server",
-        "rust-analyzer",
-        "gopls",
         "stylua",
         "shfmt",
         "shellcheck",
-      },
-      auto_update = false,
-      run_on_start = true,
-    },
+      }
+
+      local seen = {}
+      for _, item in ipairs(ensure_installed) do
+        seen[item] = true
+      end
+      for _, item in ipairs(lang.collect_mason_tools()) do
+        if not seen[item] then
+          ensure_installed[#ensure_installed + 1] = item
+          seen[item] = true
+        end
+      end
+
+      return {
+        ensure_installed = ensure_installed,
+        auto_update = false,
+        run_on_start = true,
+      }
+    end,
   },
   {
     "neovim/nvim-lspconfig",
@@ -50,6 +64,7 @@ return {
     end,
     config = function()
       local has_new_lsp = vim.lsp.config ~= nil
+      local lang = require("lang")
 
       local ok_cmp, cmp_lsp = pcall(require, "cmp_nvim_lsp")
       if not ok_cmp then
@@ -82,9 +97,11 @@ return {
           },
         },
         bashls = {},
-        rust_analyzer = {},
-        gopls = {},
       }
+
+      for server, opts in pairs(lang.collect_lsp_servers()) do
+        servers[server] = vim.tbl_deep_extend("force", servers[server] or {}, opts)
+      end
 
       if has_new_lsp then
         for server, server_opts in pairs(servers) do

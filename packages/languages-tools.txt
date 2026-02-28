@@ -38,6 +38,7 @@ rustup-target|wasm32-unknown-unknown
 
 # Cargo CLI tooling
 cargo|cargo-audit
+cargo|tree-sitter-cli
 
 # Go CLI tooling
 go|golang.org/x/tools/gopls@latest
