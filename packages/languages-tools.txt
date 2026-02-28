@@ -20,6 +20,10 @@ pacman|rustup
 pacman|jdk-openjdk
 pacman|google-java-format
 pacman|texlab
+pacman|lua-language-server
+pacman|marksman
+pacman|taplo-cli
+pacman|yaml-language-server
 
 # Container tooling
 pacman|docker

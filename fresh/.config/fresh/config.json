@@ -4,26 +4,77 @@
     "line_numbers": true,
     "tab_size": 2
   },
+  "file_explorer": {
+    "show_hidden": true
+  },
   "languages": {
-    "Java": {
+    "astro": {
       "formatter": {
-        "command": "google-java-format"
+        "command": "prettier",
+        "args": [
+          "--write"
+        ]
       },
       "tab_size": 2
     },
-    "Go": {
+    "bash": {
+      "tab_size": 2
+    },
+    "css": {
+      "formatter": {
+        "command": "prettier",
+        "args": [
+          "--write"
+        ]
+      },
+      "tab_size": 2
+    },
+    "go": {
       "formatter": {
         "command": "gofmt"
       },
       "tab_size": 2
     },
-    "Rust": {
+    "html": {
       "formatter": {
-        "command": "rustfmt"
+        "command": "prettier",
+        "args": [
+          "--write"
+        ]
       },
       "tab_size": 2
     },
-    "Python": {
+    "java": {
+      "formatter": {
+        "command": "google-java-format"
+      },
+      "tab_size": 2
+    },
+    "javascript": {
+      "formatter": {
+        "command": "prettier",
+        "args": [
+          "--write"
+        ]
+      },
+      "tab_size": 2
+    },
+    "json": {
+      "formatter": {
+        "command": "prettier",
+        "args": [
+          "--write"
+        ]
+      },
+      "tab_size": 2
+    },
+    "lua": {
+      "tab_size": 2
+    },
+    "markdown": {
+      "tab_size": 2
+    },
+    "python": {
       "formatter": {
         "command": "ruff",
         "args": [
@@ -33,7 +84,13 @@
       },
       "tab_size": 2
     },
-    "TypeScript": {
+    "rust": {
+      "formatter": {
+        "command": "rustfmt"
+      },
+      "tab_size": 2
+    },
+    "svelte": {
       "formatter": {
         "command": "prettier",
         "args": [
@@ -42,7 +99,10 @@
       },
       "tab_size": 2
     },
-    "JavaScript": {
+    "toml": {
+      "tab_size": 2
+    },
+    "tsx": {
       "formatter": {
         "command": "prettier",
         "args": [
@@ -51,7 +111,7 @@
       },
       "tab_size": 2
     },
-    "TSX": {
+    "typescript": {
       "formatter": {
         "command": "prettier",
         "args": [
@@ -60,60 +120,109 @@
       },
       "tab_size": 2
     },
-    "HTML": {
-      "formatter": {
-        "command": "prettier",
-        "args": [
-          "--write"
-        ]
-      },
-      "tab_size": 2
-    },
-    "CSS": {
-      "formatter": {
-        "command": "prettier",
-        "args": [
-          "--write"
-        ]
-      },
-      "tab_size": 2
-    },
-    "Astro": {
-      "formatter": {
-        "command": "prettier",
-        "args": [
-          "--write"
-        ]
-      },
-      "tab_size": 2
-    },
-    "JSON": {
-      "formatter": {
-        "command": "prettier",
-        "args": [
-          "--write"
-        ]
-      },
+    "yaml": {
       "tab_size": 2
     }
   },
   "lsp": {
-    "Java": {
-      "command": "jdtls",
-      "enabled": true
+    "astro": {
+      "command": "/home/giks/.volta/bin/astro-ls",
+      "args": [
+        "--stdio"
+      ],
+      "enabled": true,
+      "auto_start": false
     },
-    "Go": {
-      "command": "gopls",
+    "bash": {
+      "command": "/home/giks/.volta/bin/bash-language-server",
+      "args": [
+        "start"
+      ],
+      "enabled": true,
+      "auto_start": false
+    },
+    "css": {
+      "command": "/home/giks/.volta/bin/vscode-css-language-server",
+      "args": [
+        "--stdio"
+      ],
+      "enabled": true,
+      "auto_start": false
+    },
+    "go": {
+      "command": "/home/giks/go/bin/gopls",
       "enabled": true,
       "initialization_options": {
         "gopls": {
           "gofumpt": true,
           "staticcheck": true
         }
-      }
+      },
+      "auto_start": false
     },
-    "Rust": {
-      "command": "rust-analyzer",
+    "html": {
+      "command": "/home/giks/.volta/bin/vscode-html-language-server",
+      "args": [
+        "--stdio"
+      ],
+      "enabled": true,
+      "auto_start": false
+    },
+    "java": {
+      "command": "jdtls",
+      "enabled": false,
+      "auto_start": false
+    },
+    "javascript": {
+      "command": "/home/giks/.volta/bin/typescript-language-server",
+      "args": [
+        "--stdio"
+      ],
+      "enabled": true,
+      "auto_start": false
+    },
+    "json": {
+      "command": "/home/giks/.volta/bin/vscode-json-language-server",
+      "args": [
+        "--stdio"
+      ],
+      "enabled": true,
+      "auto_start": false
+    },
+    "latex": {
+      "command": "texlab",
+      "enabled": true,
+      "auto_start": false
+    },
+    "lua": {
+      "command": "lua-language-server",
+      "enabled": true,
+      "auto_start": false
+    },
+    "markdown": {
+      "command": "marksman",
+      "enabled": true,
+      "auto_start": false
+    },
+    "python": {
+      "command": "/home/giks/.volta/bin/pyright-langserver",
+      "args": [
+        "--stdio"
+      ],
+      "enabled": true,
+      "initialization_options": {
+        "python": {
+          "analysis": {
+            "autoSearchPaths": true,
+            "typeCheckingMode": "basic",
+            "useLibraryCodeForTypes": true
+          }
+        }
+      },
+      "auto_start": false
+    },
+    "rust": {
+      "command": "/home/giks/.cargo/bin/rust-analyzer",
       "enabled": true,
       "initialization_options": {
         "rust-analyzer": {
@@ -124,58 +233,56 @@
             "command": "clippy"
           }
         }
-      }
+      },
+      "auto_start": false
     },
-    "Python": {
-      "command": "pyright-langserver",
+    "svelte": {
+      "command": "/home/giks/.volta/bin/svelteserver",
       "args": [
         "--stdio"
       ],
       "enabled": true,
-      "initialization_options": {
-        "python": {
-          "analysis": {
-            "typeCheckingMode": "basic",
-            "autoSearchPaths": true,
-            "useLibraryCodeForTypes": true
-          }
-        }
-      }
+      "auto_start": false
     },
-    "TypeScript": {
-      "command": "typescript-language-server",
+    "tailwindcss": {
+      "command": "/home/giks/.volta/bin/tailwindcss-language-server",
+      "args": [
+        "--stdio"
+      ],
+      "enabled": true,
+      "auto_start": false
+    },
+    "toml": {
+      "command": "taplo",
+      "args": [
+        "lsp",
+        "stdio"
+      ],
+      "enabled": true,
+      "auto_start": false
+    },
+    "typescript": {
+      "command": "/home/giks/.volta/bin/typescript-language-server",
       "args": [
         "--stdio"
       ],
       "enabled": true,
       "initialization_options": {
         "preferences": {
-          "includeInlayParameterNameHints": "all",
           "includeInlayFunctionParameterTypeHints": true,
+          "includeInlayParameterNameHints": "all",
           "includeInlayVariableTypeHints": true
         }
-      }
+      },
+      "auto_start": false
     },
-    "JavaScript": {
-      "command": "typescript-language-server",
+    "yaml": {
+      "command": "yaml-language-server",
       "args": [
         "--stdio"
       ],
-      "enabled": true
-    },
-    "Astro": {
-      "command": "astro-ls",
-      "args": [
-        "--stdio"
-      ],
-      "enabled": true
-    },
-    "LaTeX": {
-      "command": "texlab",
-      "enabled": true
+      "enabled": true,
+      "auto_start": false
     }
-  },
-  "file_explorer": {
-    "show_hidden": true
   }
 }
