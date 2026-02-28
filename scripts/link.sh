@@ -10,7 +10,7 @@ is_package_dir() {
 }
 
 mapfile -t modules < <(
-  find "$ROOT_DIR" -mindepth 1 -maxdepth 1 -type d -printf '%f\n' | sort
+  find "$ROOT_DIR" -mindepth 1 -maxdepth 1 -type d -exec basename {} \; | sort
 )
 
 if [[ ${#modules[@]} -eq 0 ]]; then
@@ -41,20 +41,36 @@ if command -v stow >/dev/null 2>&1; then
 fi
 
 echo "stow not installed; using manual symlink fallback."
+
+backup_destination() {
+  local dst="$1"
+  local ts backup idx
+  ts="$(date +%Y%m%d%H%M%S)"
+  backup="${dst}.bak.${ts}"
+  idx=1
+  while [[ -e "$backup" || -L "$backup" ]]; do
+    backup="${dst}.bak.${ts}.${idx}"
+    idx=$((idx + 1))
+  done
+  mv "$dst" "$backup"
+  echo "backup: $dst -> $backup"
+}
+
 for module in "${filtered[@]}"; do
   while IFS= read -r -d '' src; do
     rel="${src#$ROOT_DIR/$module/}"
     dst="$HOME_DIR/$rel"
     dst_dir="$(dirname "$dst")"
     mkdir -p "$dst_dir"
-    if [[ -e "$dst" ]]; then
+    if [[ -e "$dst" || -L "$dst" ]]; then
       resolved="$(readlink -f "$dst" || true)"
       if [[ "$resolved" == "$src" ]]; then
         echo "skip: $dst already points to $src"
         continue
       fi
+      backup_destination "$dst"
     fi
-    ln -sfn "$src" "$dst"
+    ln -s "$src" "$dst"
     echo "link: $dst -> $src"
   done < <(find "$ROOT_DIR/$module" \( -type f -o -type l \) -print0)
 done
