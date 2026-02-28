@@ -14,6 +14,8 @@ cmatrix
 discord
 fastfetch
 neovim
+wl-clipboard
+xclip
 nit-bin
 nitch-git
 pipes.sh

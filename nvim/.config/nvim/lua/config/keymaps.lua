@@ -8,9 +8,9 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<cr>", { desc = "Clear highlight" }
 vim.keymap.set("n", "<C-a>", "ggVG", { desc = "Select all" })
 
 -- Copy / Paste (VS Code style)
-vim.keymap.set("v", "<C-c>", "y", { desc = "Copy" })
-vim.keymap.set("v", "<C-x>", "d", { desc = "Cut" })
-vim.keymap.set({ "n", "v" }, "<C-v>", "p", { desc = "Paste" })
+vim.keymap.set("v", "<C-c>", '"+y', { desc = "Copy to system clipboard" })
+vim.keymap.set("v", "<C-x>", '"+d', { desc = "Cut to system clipboard" })
+vim.keymap.set({ "n", "v" }, "<C-v>", '"+p', { desc = "Paste from system clipboard" })
 vim.keymap.set("i", "<C-v>", "<C-r>+", { desc = "Paste from insert mode" })
 
 -- Undo / Redo
