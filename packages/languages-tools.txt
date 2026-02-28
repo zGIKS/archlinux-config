@@ -19,6 +19,7 @@ pacman|go
 pacman|rustup
 pacman|jdk-openjdk
 pacman|google-java-format
+pacman|texlab
 
 # Container tooling
 pacman|docker

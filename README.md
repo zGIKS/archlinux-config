@@ -7,8 +7,8 @@ Personal configurations for Arch Linux.
 - `bash/.bashrc` (with Starship init)
 - `cava/.config/cava/config`
 - `fastfetch/.config/fastfetch/config.jsonc`
+- `fresh/.config/fresh/config.json`
 - `fish/.config/fish/config.fish`
-- `nvim/.config/nvim/init.lua`
 - `starship/.config/starship.toml`
 - `zellij/.config/zellij/config.kdl`
 - `wallpapers/Pictures/Wallpapers/` (links to `~/Pictures/Wallpapers`)
@@ -48,7 +48,7 @@ cd ~/dotfiles
 ## Yazi
 - Installed with `./install.sh --packages` (package `yazi` in `packages/arch-cli.txt`).
 - Linked with `./install.sh --link` to `~/.config/yazi/`.
-- The `edit` opener uses `nvim` for text/markdown.
+- The `edit` opener uses `fresh` for text/markdown.
 - Versioned files:
   - `~/.config/yazi/yazi.toml` (base behavior)
   - `~/.config/yazi/keymap.toml` (custom keybindings)
@@ -56,17 +56,24 @@ cd ~/dotfiles
 - Run with: `yazi`
 
 ## Structure
-Each configuration root folder (`alacritty`, `bash`, `cava`, `fastfetch`, `fish`, `nvim`, `starship`, `wallpapers`, `yazi`, `zellij`) is a dotfiles module.
+Each configuration root folder (`alacritty`, `bash`, `cava`, `fastfetch`, `fresh`, `fish`, `starship`, `wallpapers`, `yazi`, `zellij`) is a dotfiles module.
 Inside each module, the real path in HOME is replicated (`.config/...` or files in `$HOME`).
 
-## Neovim
-- Installed with `./install.sh --packages` (package `neovim` in `packages/arch-cli.txt`).
-- Linked with `./install.sh --link` to `~/.config/nvim/init.lua`.
-- Base configuration included:
-  - line numbers (`number` + `relativenumber`)
-  - 2-space indentation
-  - system clipboard (`unnamedplus`)
-  - `<leader>` shortcuts (save/close/splits)
+## Fresh Editor
+- Installed with `./install.sh --packages` (package `fresh-editor` in `packages/arch-cli.txt` via AUR/yay).
+- Run with: `fresh`
+- Linked config path: `~/.config/fresh/config.json`
+- Includes language support for: Java, Go, Rust, Python, Web (TS/JS/HTML/CSS/Astro), and LaTeX.
+
+## LaTeX Workflow (Fresh)
+- LaTeX toolchain is available (`latexmk`, `pdflatex`) and `texlab` is installed from `packages/languages-tools.txt`.
+- Use terminal in Fresh to compile/watch with short aliases:
+  - `texb CV-Jorge-Romano.tex` compiles once (`latexmk -pdf -interaction=nonstopmode -synctex=1`)
+  - `texw CV-Jorge-Romano.tex` watches and recompiles on save (`-pvc`)
+  - `texc CV-Jorge-Romano.tex` cleans auxiliary files
+- Aliases are defined in:
+  - `bash/.bashrc`
+  - `fish/.config/fish/config.fish`
 
 ## Wallpapers
 - Source folder in the repo: `wallpapers/Pictures/Wallpapers/`

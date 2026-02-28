@@ -1,0 +1,181 @@
+{
+  "$schema": "https://getfresh.dev/schema/configuration.schema.json",
+  "editor": {
+    "line_numbers": true,
+    "tab_size": 2
+  },
+  "languages": {
+    "Java": {
+      "formatter": {
+        "command": "google-java-format"
+      },
+      "tab_size": 2
+    },
+    "Go": {
+      "formatter": {
+        "command": "gofmt"
+      },
+      "tab_size": 2
+    },
+    "Rust": {
+      "formatter": {
+        "command": "rustfmt"
+      },
+      "tab_size": 2
+    },
+    "Python": {
+      "formatter": {
+        "command": "ruff",
+        "args": [
+          "format",
+          "-"
+        ]
+      },
+      "tab_size": 2
+    },
+    "TypeScript": {
+      "formatter": {
+        "command": "prettier",
+        "args": [
+          "--write"
+        ]
+      },
+      "tab_size": 2
+    },
+    "JavaScript": {
+      "formatter": {
+        "command": "prettier",
+        "args": [
+          "--write"
+        ]
+      },
+      "tab_size": 2
+    },
+    "TSX": {
+      "formatter": {
+        "command": "prettier",
+        "args": [
+          "--write"
+        ]
+      },
+      "tab_size": 2
+    },
+    "HTML": {
+      "formatter": {
+        "command": "prettier",
+        "args": [
+          "--write"
+        ]
+      },
+      "tab_size": 2
+    },
+    "CSS": {
+      "formatter": {
+        "command": "prettier",
+        "args": [
+          "--write"
+        ]
+      },
+      "tab_size": 2
+    },
+    "Astro": {
+      "formatter": {
+        "command": "prettier",
+        "args": [
+          "--write"
+        ]
+      },
+      "tab_size": 2
+    },
+    "JSON": {
+      "formatter": {
+        "command": "prettier",
+        "args": [
+          "--write"
+        ]
+      },
+      "tab_size": 2
+    }
+  },
+  "lsp": {
+    "Java": {
+      "command": "jdtls",
+      "enabled": true
+    },
+    "Go": {
+      "command": "gopls",
+      "enabled": true,
+      "initialization_options": {
+        "gopls": {
+          "gofumpt": true,
+          "staticcheck": true
+        }
+      }
+    },
+    "Rust": {
+      "command": "rust-analyzer",
+      "enabled": true,
+      "initialization_options": {
+        "rust-analyzer": {
+          "cargo": {
+            "allFeatures": true
+          },
+          "check": {
+            "command": "clippy"
+          }
+        }
+      }
+    },
+    "Python": {
+      "command": "pyright-langserver",
+      "args": [
+        "--stdio"
+      ],
+      "enabled": true,
+      "initialization_options": {
+        "python": {
+          "analysis": {
+            "typeCheckingMode": "basic",
+            "autoSearchPaths": true,
+            "useLibraryCodeForTypes": true
+          }
+        }
+      }
+    },
+    "TypeScript": {
+      "command": "typescript-language-server",
+      "args": [
+        "--stdio"
+      ],
+      "enabled": true,
+      "initialization_options": {
+        "preferences": {
+          "includeInlayParameterNameHints": "all",
+          "includeInlayFunctionParameterTypeHints": true,
+          "includeInlayVariableTypeHints": true
+        }
+      }
+    },
+    "JavaScript": {
+      "command": "typescript-language-server",
+      "args": [
+        "--stdio"
+      ],
+      "enabled": true
+    },
+    "Astro": {
+      "command": "astro-ls",
+      "args": [
+        "--stdio"
+      ],
+      "enabled": true
+    },
+    "LaTeX": {
+      "command": "texlab",
+      "enabled": true
+    }
+  },
+  "file_explorer": {
+    "show_hidden": true
+  }
+}

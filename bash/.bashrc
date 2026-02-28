@@ -7,6 +7,9 @@
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
+alias texb='latexmk -pdf -interaction=nonstopmode -synctex=1'
+alias texw='latexmk -pdf -pvc -interaction=nonstopmode -synctex=1'
+alias texc='latexmk -c'
 
 # Keep PATH ordering deterministic across sessions.
 path_prepend() {

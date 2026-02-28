@@ -13,7 +13,7 @@ cava
 cmatrix
 discord
 fastfetch
-neovim
+fresh-editor
 wl-clipboard
 xclip
 nit-bin

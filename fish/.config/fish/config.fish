@@ -24,6 +24,10 @@ end
 
 set -gx PATH $merged_paths
 
+alias texb 'latexmk -pdf -interaction=nonstopmode -synctex=1'
+alias texw 'latexmk -pdf -pvc -interaction=nonstopmode -synctex=1'
+alias texc 'latexmk -c'
+
 if status is-interactive
     # Fish colors aligned with glass + shadcn palette
     set -g fish_color_normal fafafa
