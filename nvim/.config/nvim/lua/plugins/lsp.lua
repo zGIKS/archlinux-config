@@ -5,23 +5,50 @@ return {
     opts = {},
   },
   {
-    "williamboman/mason-lspconfig.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    dependencies = { "williamboman/mason.nvim" },
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      "williamboman/mason.nvim",
+    },
     opts = {
-      ensure_installed = { "lua_ls", "bashls" },
+      ensure_installed = {
+        "lua-language-server",
+        "bash-language-server",
+        "rust-analyzer",
+        "gopls",
+        "stylua",
+        "shfmt",
+        "shellcheck",
+      },
+      auto_update = false,
+      run_on_start = true,
     },
   },
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-      "williamboman/mason-lspconfig.nvim",
+      "williamboman/mason.nvim",
       "hrsh7th/cmp-nvim-lsp",
     },
+    init = function()
+      local retry_group = vim.api.nvim_create_augroup("dotfiles_lsp_attach_retry", { clear = true })
+      vim.api.nvim_create_autocmd("FileType", {
+        group = retry_group,
+        callback = function(args)
+          vim.schedule(function()
+            if not vim.api.nvim_buf_is_valid(args.buf) then
+              return
+            end
+            if #vim.lsp.get_clients({ bufnr = args.buf }) > 0 then
+              return
+            end
+            pcall(vim.cmd, "silent! LspStart")
+          end)
+        end,
+      })
+    end,
     config = function()
-      -- Use the new lsp.config/enable if available (Nvim 0.11+),
-      -- otherwise fallback to the traditional setup (Nvim 0.10).
       local has_new_lsp = vim.lsp.config ~= nil
 
       local ok_cmp, cmp_lsp = pcall(require, "cmp_nvim_lsp")
@@ -55,17 +82,22 @@ return {
           },
         },
         bashls = {},
+        rust_analyzer = {},
+        gopls = {},
       }
 
-      local lspconfig = require("lspconfig")
-      for server, server_opts in pairs(servers) do
-        server_opts.capabilities = capabilities
-        server_opts.on_attach = on_attach
-
-        if has_new_lsp then
+      if has_new_lsp then
+        for server, server_opts in pairs(servers) do
+          server_opts.capabilities = capabilities
+          server_opts.on_attach = on_attach
           vim.lsp.config(server, server_opts)
           vim.lsp.enable(server)
-        else
+        end
+      else
+        local lspconfig = require("lspconfig")
+        for server, server_opts in pairs(servers) do
+          server_opts.capabilities = capabilities
+          server_opts.on_attach = on_attach
           lspconfig[server].setup(server_opts)
         end
       end

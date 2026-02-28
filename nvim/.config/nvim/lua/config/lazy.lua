@@ -29,7 +29,7 @@ require("lazy").setup("plugins", {
     lazy = true,
   },
   install = {
-    colorscheme = { "tokyonight", "habamax" },
+    colorscheme = { "vscode", "habamax" },
   },
   checker = { enabled = false },
   change_detection = { notify = false },

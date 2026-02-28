@@ -3,6 +3,10 @@ vim.g.maplocalleader = " "
 
 local opt = vim.opt
 
+-- Force filetype + syntax detection early to avoid empty &filetype on first open.
+vim.cmd("filetype plugin indent on")
+vim.cmd("syntax on")
+
 opt.number = true
 opt.relativenumber = false
 opt.mouse = "a"
