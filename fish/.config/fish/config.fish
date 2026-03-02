@@ -2,6 +2,9 @@ set -gx EDITOR fresh
 set -gx VISUAL fresh
 set -gx VOLTA_HOME $HOME/.volta
 set -gx BUN_INSTALL $HOME/.bun
+if test -z "$LIBCLANG_PATH"; and test -e /usr/lib/libclang.so
+    set -gx LIBCLANG_PATH /usr/lib
+end
 
 # Build a deterministic PATH with stable priority and no duplicates.
 set -l preferred_paths \

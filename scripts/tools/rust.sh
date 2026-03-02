@@ -6,6 +6,26 @@ set -euo pipefail
   exit 1
 }
 
+configure_libclang_for_bindgen() {
+  if [[ -n "${LIBCLANG_PATH:-}" ]]; then
+    return 0
+  fi
+
+  local -a candidates=(
+    /usr/lib
+    /usr/lib64
+    /usr/lib/llvm*/lib
+  )
+  local dir
+  for dir in "${candidates[@]}"; do
+    if compgen -G "$dir/libclang.so*" >/dev/null; then
+      export LIBCLANG_PATH="$dir"
+      echo "Using LIBCLANG_PATH=$LIBCLANG_PATH"
+      return 0
+    fi
+  done
+}
+
 install_rustup_toolchains_from_manifest() {
   local -a toolchains=("$@")
   if [[ ${#toolchains[@]} -eq 0 ]]; then
@@ -76,6 +96,7 @@ install_cargo_packages_from_manifest() {
   fi
 
   echo "Installing cargo packages: ${packages[*]}"
+  configure_libclang_for_bindgen
   local item
   for item in "${packages[@]}"; do
     if [[ "$item" == *"@"* ]]; then

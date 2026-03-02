@@ -76,6 +76,9 @@ fi
 if [[ -r "$HOME/.cargo/env" ]]; then
   . "$HOME/.cargo/env"
 fi
+if [[ -z "${LIBCLANG_PATH:-}" && -e /usr/lib/libclang.so ]]; then
+  export LIBCLANG_PATH=/usr/lib
+fi
 
 # Priority order for Node/tooling shims.
 path_prepend "$VOLTA_HOME/bin"
