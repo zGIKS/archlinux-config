@@ -16,7 +16,6 @@ fastfetch
 fresh-editor
 wl-clipboard
 xclip
-nit-bin
 nitch-git
 pipes.sh
 spotify
