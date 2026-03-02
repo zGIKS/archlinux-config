@@ -77,7 +77,7 @@ $run_packages && install_language_tools
 $run_packages && configure_docker
 $run_link && do_link
 $run_status && do_status
-if $run_check || $run_link || $run_packages; then
+if $run_check || $run_packages; then
   do_check
 fi
 

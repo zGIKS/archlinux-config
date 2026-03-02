@@ -11,6 +11,23 @@ alias texb='latexmk -pdf -interaction=nonstopmode -synctex=1'
 alias texw='latexmk -pdf -pvc -interaction=nonstopmode -synctex=1'
 alias texc='latexmk -c'
 
+gicd() {
+  local candidates=(
+    "$HOME/dotfiles"
+    "$HOME/archlinux-config"
+    "$HOME/home/archlinux-config"
+  )
+  local target
+  for target in "${candidates[@]}"; do
+    if [[ -d "$target" ]]; then
+      cd "$target" || return 1
+      return 0
+    fi
+  done
+  echo "gicd: dotfiles directory not found." >&2
+  return 1
+}
+
 # Keep PATH ordering deterministic across sessions.
 path_prepend() {
   local dir="${1:-}"
