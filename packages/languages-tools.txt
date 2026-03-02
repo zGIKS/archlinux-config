@@ -17,6 +17,8 @@ pacman|python-pip
 pacman|uv
 pacman|go
 pacman|rustup
+pacman|clang
+pacman|llvm
 pacman|jdk-openjdk
 pacman|google-java-format
 pacman|texlab

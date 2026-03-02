@@ -8,6 +8,7 @@ set -euo pipefail
 
 configure_libclang_for_bindgen() {
   if [[ -n "${LIBCLANG_PATH:-}" ]]; then
+    printf '%s\n' "$LIBCLANG_PATH"
     return 0
   fi
 
@@ -19,11 +20,12 @@ configure_libclang_for_bindgen() {
   local dir
   for dir in "${candidates[@]}"; do
     if compgen -G "$dir/libclang.so*" >/dev/null; then
-      export LIBCLANG_PATH="$dir"
-      echo "Using LIBCLANG_PATH=$LIBCLANG_PATH"
+      printf '%s\n' "$dir"
       return 0
     fi
   done
+
+  return 1
 }
 
 install_rustup_toolchains_from_manifest() {
@@ -96,13 +98,27 @@ install_cargo_packages_from_manifest() {
   fi
 
   echo "Installing cargo packages: ${packages[*]}"
-  configure_libclang_for_bindgen
+  local libclang_path
+  if libclang_path="$(configure_libclang_for_bindgen)"; then
+    export LIBCLANG_PATH="$libclang_path"
+    echo "Using LIBCLANG_PATH=$LIBCLANG_PATH"
+  else
+    echo "Warning: libclang not detected. Install clang/llvm or set LIBCLANG_PATH."
+  fi
   local item
   for item in "${packages[@]}"; do
     if [[ "$item" == *"@"* ]]; then
-      cargo install "${item%@*}" --version "${item#*@}" --locked
+      if [[ -n "${LIBCLANG_PATH:-}" ]]; then
+        LIBCLANG_PATH="$LIBCLANG_PATH" cargo install "${item%@*}" --version "${item#*@}" --locked
+      else
+        cargo install "${item%@*}" --version "${item#*@}" --locked
+      fi
     else
-      cargo install "$item" --locked
+      if [[ -n "${LIBCLANG_PATH:-}" ]]; then
+        LIBCLANG_PATH="$LIBCLANG_PATH" cargo install "$item" --locked
+      else
+        cargo install "$item" --locked
+      fi
     fi
   done
 }
