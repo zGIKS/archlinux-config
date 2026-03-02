@@ -12,6 +12,7 @@ source "$LIB_DIR/ops.sh"
 source "$TOOLS_DIR/common.sh"
 source "$TOOLS_DIR/docker.sh"
 source "$TOOLS_DIR/pacman.sh"
+source "$TOOLS_DIR/shell.sh"
 source "$TOOLS_DIR/rust.sh"
 source "$TOOLS_DIR/go.sh"
 source "$TOOLS_DIR/uv.sh"
@@ -75,6 +76,7 @@ done
 $run_packages && install_packages
 $run_packages && install_language_tools
 $run_packages && configure_docker
+$run_packages && configure_login_shell
 $run_link && do_link
 $run_status && do_status
 if $run_check || $run_packages; then

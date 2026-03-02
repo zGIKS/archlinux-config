@@ -9,6 +9,7 @@ volta-bin
 # Shell and terminal
 alacritty
 bash-completion
+fish
 cava
 cmatrix
 discord
@@ -20,6 +21,7 @@ nitch-git
 pipes.sh
 spotify
 spicetify-cli
+visual-studio-code-bin
 starship
 zellij
 yazi

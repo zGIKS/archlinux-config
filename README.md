@@ -33,6 +33,7 @@ cd ~/dotfiles
 # Only install packages listed in packages/arch-cli.txt
 # plus language runtimes/tooling from packages/languages-tools.txt
 # also configures Docker on Arch (service + docker group)
+# also installs fish and configures it as login shell when possible
 ./install.sh --packages
 
 # Check PATH order and command resolution (node/npm/gemini)
@@ -85,6 +86,14 @@ Inside each module, the real path in HOME is replicated (`.config/...` or files 
 - In `fish`, when opening a login shell:
   - uses `nitch` if installed
   - if not, uses `fastfetch` as fallback
+
+## Fish Shell
+- Installed with `./install.sh --packages` (package `fish` in `packages/arch-cli.txt`).
+- `install.sh` tries to set `fish` as your login shell automatically.
+- If it cannot (non-interactive run), use:
+```bash
+chsh -s "$(command -v fish)"
+```
 
 ## Docker on Arch Linux
 - `./install.sh --packages` installs from `packages/languages-tools.txt`:
